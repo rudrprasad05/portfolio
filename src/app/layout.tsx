@@ -6,6 +6,7 @@ import { Roboto } from "next/font/google";
 import { SideNavBar } from "./components/SideNavBar";
 import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
+import LayoutContainer from "./components/LayoutContainer";
 
 const roboto = Roboto({
   weight: ["400", "900"],
@@ -28,20 +29,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${roboto.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <SidebarProvider>
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+        <body className={`${roboto.className} antialiased flex items-center`}>
+          <SidebarProvider className="">
             <SideNavBar />
-            <main className="w-full">
-              <SidebarTrigger />
+            <LayoutContainer>
               <Analytics />
               <ThemeSwitcherOneClick seeName={false} />
-
               {children}
-            </main>
+            </LayoutContainer>
           </SidebarProvider>
-        </ThemeProvider>
-      </body>
+        </body>
+      </ThemeProvider>
     </html>
   );
 }
