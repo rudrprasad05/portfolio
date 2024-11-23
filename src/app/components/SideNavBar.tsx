@@ -21,6 +21,7 @@ import {
   Calendar,
   ChevronDown,
   Code,
+  Compass,
   FileText,
   Folder,
   Home,
@@ -39,8 +40,13 @@ import Link from "next/link";
 
 const groups = [
   {
-    groupName: "Explore",
+    groupName: null,
     items: [
+      {
+        title: "Explore",
+        icon: <Compass />,
+        slug: "#",
+      },
       {
         title: "Experience",
         icon: <Briefcase />,
@@ -128,7 +134,9 @@ export function SideNavBar() {
       <SidebarContent className="p-2">
         {groups.map((g) => (
           <SidebarGroup key={g.groupName}>
-            <SidebarGroupLabel className="">{g.groupName}</SidebarGroupLabel>
+            {g.groupName && (
+              <SidebarGroupLabel className="">{g.groupName}</SidebarGroupLabel>
+            )}
             <SidebarGroupContent>
               <SidebarMenu>
                 {g.items.map((project) => (

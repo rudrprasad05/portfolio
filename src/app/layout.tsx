@@ -6,6 +6,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { SideNavBar } from "./components/SideNavBar";
 import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
+import { Analytics } from "@vercel/analytics/react";
 
 const roboto = Roboto({
   weight: ["400", "900"],
@@ -34,6 +35,7 @@ export default function RootLayout({
             <SideNavBar />
             <main className="w-full">
               <SidebarTrigger />
+              <Analytics />
               <ThemeSwitcherOneClick seeName={false} />
 
               {children}
