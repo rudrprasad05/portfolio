@@ -1,4 +1,3 @@
-import { Collapsible } from "@/components/ui/collapsible";
 import {
   Sidebar,
   SidebarContent,
@@ -12,30 +11,18 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import {
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@radix-ui/react-collapsible";
-import {
   Book,
   Briefcase,
-  Calendar,
-  ChevronDown,
   Code,
   Compass,
   FileText,
   Folder,
-  Home,
   Info,
   Layers,
-  LucideIcon,
-  Mail,
-  Search,
-  Settings,
 } from "lucide-react";
 import Image from "next/image";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
-import ThemeSwitcherOneClick from "../theme/ThemeSwitcherOneClick";
 import Link from "next/link";
 
 const groups = [

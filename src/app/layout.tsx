@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
 import "./globals.css";
 
-import { Roboto, Roboto_Mono } from "next/font/google";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Analytics } from "@vercel/analytics/react";
+import { Roboto } from "next/font/google";
 import { SideNavBar } from "./components/SideNavBar";
 import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
-import { Analytics } from "@vercel/analytics/react";
 
 const roboto = Roboto({
   weight: ["400", "900"],
@@ -15,12 +14,12 @@ const roboto = Roboto({
   display: "swap",
 });
 
-const roboto_mono = Roboto_Mono({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-roboto-mono",
-  display: "swap",
-});
+// const roboto_mono = Roboto_Mono({
+//   weight: "400",
+//   subsets: ["latin"],
+//   variable: "--font-roboto-mono",
+//   display: "swap",
+// });
 
 export default function RootLayout({
   children,
