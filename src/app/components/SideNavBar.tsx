@@ -12,18 +12,30 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import {
-  CollapsibleTrigger,
   CollapsibleContent,
+  CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 import {
+  Book,
+  Briefcase,
   Calendar,
   ChevronDown,
+  Code,
+  FileText,
+  Folder,
   Home,
+  Info,
+  Layers,
+  LucideIcon,
   Mail,
   Search,
   Settings,
 } from "lucide-react";
 import Image from "next/image";
+import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
+
+import ThemeSwitcherOneClick from "../theme/ThemeSwitcherOneClick";
+import Link from "next/link";
 
 const groups = [
   {
@@ -31,22 +43,42 @@ const groups = [
     items: [
       {
         title: "Experience",
-        icon: Home,
+        icon: <Briefcase />,
         slug: "#",
       },
       {
         title: "Projects",
-        icon: Home,
+        icon: <Folder />,
         slug: "#",
       },
       {
         title: "Resume",
-        icon: Home,
+        icon: <FileText />,
         slug: "#",
       },
       {
         title: "About",
-        icon: Home,
+        icon: <Info />,
+        slug: "#",
+      },
+    ],
+  },
+  {
+    groupName: "Resources",
+    items: [
+      {
+        title: "Devlog",
+        icon: <Code />,
+        slug: "#",
+      },
+      {
+        title: "Reads",
+        icon: <Book />,
+        slug: "#",
+      },
+      {
+        title: "Tech Stack",
+        icon: <Layers />,
         slug: "#",
       },
     ],
@@ -56,17 +88,17 @@ const groups = [
     items: [
       {
         title: "Instagram",
-        icon: Home,
+        icon: <FaInstagram />,
         slug: "#",
       },
       {
         title: "Linkdin",
-        icon: Home,
+        icon: <FaLinkedin />,
         slug: "#",
       },
       {
         title: "Github",
-        icon: Home,
+        icon: <FaGithub />,
         slug: "#",
       },
     ],
@@ -95,17 +127,17 @@ export function SideNavBar() {
       </SidebarHeader>
       <SidebarContent className="p-2">
         {groups.map((g) => (
-          <SidebarGroup>
-            <SidebarGroupLabel>{g.groupName}</SidebarGroupLabel>
+          <SidebarGroup key={g.groupName}>
+            <SidebarGroupLabel className="">{g.groupName}</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {g.items.map((project) => (
                   <SidebarMenuItem key={project.title}>
                     <SidebarMenuButton asChild>
-                      <a href={project.slug}>
-                        <project.icon />
+                      <Link className="text-lg" href={project.slug}>
+                        {project.icon}
                         <span>{project.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -115,7 +147,7 @@ export function SideNavBar() {
         ))}
         <SidebarGroup />
       </SidebarContent>
-      <SidebarFooter />
+      <SidebarFooter></SidebarFooter>
     </Sidebar>
   );
 }

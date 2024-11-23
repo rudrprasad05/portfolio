@@ -20,13 +20,13 @@ const ThemeSwitcherOneClick = ({ seeName }: { seeName: boolean }) => {
     return (
       <button
         className={cn(
-          "w-full hover:bg-background/60 transition rounded-md",
+          " hover:bg-background/60 transition rounded-md fixed top-2 right-2",
           seeName && "flex gap-3 items-center"
         )}
         onClick={() => setTheme("dark")}
       >
         <div className="flex items-center p-3">
-          <Sun className="mx-auto stroke-primary h-6 w-6" />
+          <Moon className="mx-auto stroke-primary h-6 w-6" />
         </div>
         <div>{seeName && "Light"}</div>
       </button>
@@ -35,13 +35,13 @@ const ThemeSwitcherOneClick = ({ seeName }: { seeName: boolean }) => {
     return (
       <button
         className={cn(
-          "w-full hover:bg-background/60 transition rounded-md",
+          " hover:bg-background/60 transition rounded-md fixed top-2 right-2",
           seeName && "flex gap-3 items-center"
         )}
         onClick={() => setTheme("light")}
       >
         <div className="p-3 flex items-center">
-          <Moon className="mx-auto stroke-primary h-6 w-6" />
+          <Sun className="mx-auto stroke-primary h-6 w-6" />
         </div>
         <div>{seeName && "Dark"}</div>
       </button>
