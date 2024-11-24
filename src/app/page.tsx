@@ -5,6 +5,7 @@ import FullWidthContainer from "./components/FullWidthContainer";
 import PaddedContainer from "./components/PaddedContainer";
 import Experience from "./components/explore/Experience";
 import Projects from "./components/projects/Projects";
+import TechStack from "./components/techstack/Tech";
 
 async function fetchData() {
   // Simulate a delay (API call)
@@ -20,6 +21,7 @@ export default async function Home() {
       <Header />
       <Experience />
       <Projects />
+      <TechStack />
     </PaddedContainer>
   );
 }

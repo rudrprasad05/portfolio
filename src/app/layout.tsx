@@ -37,7 +37,7 @@ export default function RootLayout({
             <SideNavBar />
             <Toaster />
             <LayoutContainer>
-              <Analytics />
+              {/* <Analytics /> */}
               <ThemeSwitcherOneClick seeName={false} />
               {children}
             </LayoutContainer>
