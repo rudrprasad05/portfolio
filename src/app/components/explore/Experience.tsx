@@ -3,12 +3,12 @@ import JobsSection from "./JobsSection";
 
 const jobs = [
   {
-    date: "11 Sept 2024",
-    content: "lorem",
+    date: "22 June 2024",
+    content: "Intern Web Developer",
   },
   {
-    date: "11 Sept 2024",
-    content: "lorem",
+    date: "18 November 2024",
+    content: "Intern Software Developer",
   },
   {
     date: "11 Sept 2024",

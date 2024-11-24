@@ -9,7 +9,6 @@ const JobsSection = ({
   content: string;
   isLast: boolean;
 }) => {
-  console.log(isLast ? "l" : "k");
   return (
     <div className="grid place-content-start grid-cols-12 gap-4 items-center min-h-[200px]">
       <div className="text-muted-foreground/70 col-span-2 h-full">{date}</div>
