@@ -1,4 +1,5 @@
 import React from "react";
+
 import { ReactIconSvg, SpringIconSvg } from "../svg";
 import TechCard from "./TechCard";
 
@@ -42,8 +43,8 @@ const TechStack = () => {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-6 ">
-        {data.map((d) => (
-          <TechCard {...d} />
+        {data.map((d, i) => (
+          <TechCard key={i} {...d} />
         ))}
       </div>
     </div>

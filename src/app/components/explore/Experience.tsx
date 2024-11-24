@@ -22,8 +22,8 @@ const Experience = () => {
       <div className="mb-6">
         <h2 className="">Experience</h2>
         <p className="text-muted-foreground/70">
-          A detailed look into the places I've worked at. It's help me become
-          the developer I am today
+          A detailed look into the places I&apos;ve worked at. It&apos;s help me
+          become the developer I am today
         </p>
       </div>
       {jobs.map((j, i) => (
