@@ -13,6 +13,7 @@ async function fetchData() {
 }
 
 export default async function Home() {
+  // const r = await fetchData();
   return (
     <PaddedContainer>
       <Header />

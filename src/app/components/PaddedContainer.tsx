@@ -5,7 +5,7 @@ interface props {
 }
 
 const PaddedContainer: React.FC<props> = ({ children }) => {
-  return <div className="w-full h-full grow px-24 py-16">{children}</div>;
+  return <div className="w-full overflow-auto px-24 py-16">{children}</div>;
 };
 
 export default PaddedContainer;

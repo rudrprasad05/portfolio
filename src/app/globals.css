@@ -80,7 +80,7 @@ html {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-scroll;
   }
   h1 {
     @apply text-2xl;

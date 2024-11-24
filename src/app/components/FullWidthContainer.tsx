@@ -5,7 +5,7 @@ interface props {
 }
 
 const FullWidthContainer: React.FC<props> = ({ children }) => {
-  return <div className="w-full h-full grow">{children}</div>;
+  return <div className="w-full grow">{children}</div>;
 };
 
 export default FullWidthContainer;

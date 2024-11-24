@@ -5,11 +5,7 @@ interface props {
 }
 
 const LayoutContainer: React.FC<props> = ({ children }) => {
-  return (
-    <div className="w-full min-h-screen flex items-center justify-center">
-      {children}
-    </div>
-  );
+  return <div className="w-full flex overflow-scroll">{children}</div>;
 };
 
 export default LayoutContainer;
