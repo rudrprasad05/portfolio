@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sidebar,
   SidebarContent,
@@ -24,6 +26,8 @@ import Image from "next/image";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 const groups = [
   {
@@ -32,27 +36,27 @@ const groups = [
       {
         title: "Explore",
         icon: <Compass />,
-        slug: "#",
+        slug: "/",
       },
       {
         title: "Experience",
         icon: <Briefcase />,
-        slug: "#",
+        slug: "/experience",
       },
       {
         title: "Projects",
         icon: <Folder />,
-        slug: "#",
+        slug: "/projects",
       },
       {
         title: "Resume",
         icon: <FileText />,
-        slug: "#",
+        slug: "/resume",
       },
       {
         title: "About",
         icon: <Info />,
-        slug: "#",
+        slug: "/about",
       },
     ],
   },
@@ -99,6 +103,8 @@ const groups = [
 ];
 
 export function SideNavBar() {
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <Sidebar>
       <SidebarHeader className="p-6">
@@ -127,7 +133,13 @@ export function SideNavBar() {
             <SidebarGroupContent>
               <SidebarMenu>
                 {g.items.map((project) => (
-                  <SidebarMenuItem key={project.title}>
+                  <SidebarMenuItem
+                    className={clsx(
+                      `rounded-md`,
+                      pathname == project.slug ? "bg-muted" : "bg-none"
+                    )}
+                    key={project.title}
+                  >
                     <SidebarMenuButton asChild>
                       <Link className="text-lg" href={project.slug}>
                         {project.icon}

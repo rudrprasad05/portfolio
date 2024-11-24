@@ -1,13 +1,14 @@
-import "./globals.css";
-
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
 import { Roboto } from "next/font/google";
+
 import LayoutContainer from "./components/LayoutContainer";
 import { SideNavBar } from "./components/SideNavBar";
 import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
+
+import "./globals.css";
 
 const roboto = Roboto({
   weight: ["400", "900"],
@@ -31,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark overflow-scroll">
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <body className={`flex items-center`}>
+        <body className={`${roboto.className} flex items-center`}>
           <SidebarProvider className="">
             <SideNavBar />
             <Toaster />
