@@ -23,7 +23,7 @@ export default function Header() {
           A <span className="text-muted-foreground">Software</span> Developer
         </h1>
       </div>
-      {/* <Links /> */}
+      {false && <Links />}
     </FullWidthContainer>
   );
 }
