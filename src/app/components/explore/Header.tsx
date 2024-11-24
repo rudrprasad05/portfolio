@@ -1,22 +1,18 @@
 "use client";
 
-import { FJ } from "country-flag-icons/react/3x2";
 import {
-  Globe,
-  Link2,
+  CheckCheck,
+  Clipboard,
   Mail,
   MapPin,
-  Pin,
   SquareArrowOutUpRight,
-  Clipboard,
-  CheckCheck,
 } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 
-import FullWidthContainer from "../FullWidthContainer";
 import { toast } from "sonner";
+import FullWidthContainer from "../FullWidthContainer";
 
 export default function Header() {
   return (

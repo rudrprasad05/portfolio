@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-
-import Header from "./components/explore/Header";
-import FullWidthContainer from "./components/FullWidthContainer";
-import PaddedContainer from "./components/PaddedContainer";
 import Experience from "./components/explore/Experience";
+import Header from "./components/explore/Header";
+import PaddedContainer from "./components/PaddedContainer";
 import Projects from "./components/projects/Projects";
 import TechStack from "./components/techstack/Tech";
 

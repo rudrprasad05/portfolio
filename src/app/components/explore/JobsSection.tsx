@@ -1,9 +1,6 @@
-import React from "react";
-
 const JobsSection = ({
   date,
   content,
-  isLast,
 }: {
   date: string;
   content: string;

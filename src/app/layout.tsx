@@ -1,6 +1,5 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { Analytics } from "@vercel/analytics/react";
 import { Roboto } from "next/font/google";
 
 import LayoutContainer from "./components/LayoutContainer";
