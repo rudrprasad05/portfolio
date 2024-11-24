@@ -7,6 +7,7 @@ import { SideNavBar } from "./components/SideNavBar";
 import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
 import LayoutContainer from "./components/LayoutContainer";
+import { Toaster } from "@/components/ui/sonner";
 
 const roboto = Roboto({
   weight: ["400", "900"],
@@ -33,6 +34,7 @@ export default function RootLayout({
         <body className={`${roboto.className} antialiased flex items-center`}>
           <SidebarProvider className="">
             <SideNavBar />
+            <Toaster />
             <LayoutContainer>
               <Analytics />
               <ThemeSwitcherOneClick seeName={false} />
