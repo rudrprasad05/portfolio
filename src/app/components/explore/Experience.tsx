@@ -1,20 +1,8 @@
 import React from "react";
 import JobsSection from "./JobsSection";
-
-const jobs = [
-  {
-    date: "22 June 2024",
-    content: "Intern Web Developer",
-  },
-  {
-    date: "18 November 2024",
-    content: "Intern Software Developer",
-  },
-  {
-    date: "11 Sept 2024",
-    content: "lorem",
-  },
-];
+import { ETechStack, TJobData } from "@/types";
+import { ReactIconSvg } from "../svg";
+import { JOBS_DATA } from "@/data";
 
 const Experience = () => {
   return (
@@ -26,12 +14,12 @@ const Experience = () => {
           become the developer I am today
         </p>
       </div>
-      {jobs.map((j, i) => (
+      {JOBS_DATA.map((j, i) => (
         <JobsSection
           key={i}
-          isLast={jobs.length == i + 1}
-          date={j.date}
-          content={j.content}
+          isLast={JOBS_DATA.length == i + 1}
+          startDate={j.startDate}
+          describtion={j.describtion}
         />
       ))}
     </div>

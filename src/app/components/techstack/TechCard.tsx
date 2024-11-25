@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { TTeckStack } from "@/types";
 import React from "react";
-import { props } from "./Tech";
 
-const TechCard = (props: props) => {
+const TechCard = (props: TTeckStack) => {
   return (
     <Card className="flex items-center justify-start">
       <CardContent className="flex flex-row items-center p-4 gap-3">

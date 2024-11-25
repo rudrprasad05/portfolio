@@ -2,14 +2,9 @@ import React from "react";
 
 import { ReactIconSvg, SpringIconSvg } from "../svg";
 import TechCard from "./TechCard";
+import { TTeckStack } from "@/types";
 
-export interface props {
-  icon: React.ReactElement;
-  name: string;
-  desc: string;
-}
-
-const data: props[] = [
+export const TECH_STACK: TTeckStack[] = [
   {
     icon: <ReactIconSvg className="w-full" />,
     name: "React",
@@ -43,7 +38,7 @@ const TechStack = () => {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-6 ">
-        {data.map((d, i) => (
+        {TECH_STACK.map((d, i) => (
           <TechCard key={i} {...d} />
         ))}
       </div>

@@ -1,14 +1,16 @@
 const JobsSection = ({
-  date,
-  content,
+  startDate,
+  describtion,
 }: {
-  date: string;
-  content: string;
+  startDate: string;
+  describtion: string;
   isLast: boolean;
 }) => {
   return (
     <div className="grid place-content-start grid-cols-12 gap-4 items-center min-h-[200px]">
-      <div className="text-muted-foreground/70 col-span-2 h-full">{date}</div>
+      <div className="text-muted-foreground/70 col-span-2 h-full">
+        {startDate}
+      </div>
       <div className="col-span-1 h-full flex flex-col items-center gap-2 py-1">
         <div
           content=""
@@ -19,7 +21,7 @@ const JobsSection = ({
           className="rounded-full w-[2px] h-full bg-muted-foreground/40"
         ></div>
       </div>
-      <div className="col-span-9 min-h-[200px]">{content}</div>
+      <div className="col-span-9 min-h-[200px]">{describtion}</div>
     </div>
   );
 };
