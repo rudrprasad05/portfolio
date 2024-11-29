@@ -7,6 +7,12 @@ export enum ETechStack {
   GIT = "Git",
 }
 
+export type TTeckStack = {
+  icon: React.ReactElement;
+  name: string;
+  desc: string;
+};
+
 export type TJobData = {
   time: { type: "YEARS" | "MONTHS"; duration: number };
   location: string;
@@ -19,7 +25,7 @@ export type TJobData = {
 };
 
 export type TechStackType = {
-  icon: SVGProps<SVGSVGElement>;
+  icon: React.ReactElement;
   name: string;
   desc: string;
 };
