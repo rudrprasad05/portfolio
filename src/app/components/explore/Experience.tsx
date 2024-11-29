@@ -1,8 +1,8 @@
-import React from "react";
-import JobsSection from "./JobsSection";
-import { ETechStack, TJobData } from "@/types";
 import { ReactIconSvg } from "../svg";
+import JobsSection from "./JobsSection";
 import { JOBS_DATA } from "@/data";
+import { ETechStack, TJobData } from "@/types";
+import React from "react";
 
 const Experience = () => {
   return (
@@ -15,12 +15,7 @@ const Experience = () => {
         </p>
       </div>
       {JOBS_DATA.map((j, i) => (
-        <JobsSection
-          key={i}
-          isLast={JOBS_DATA.length == i + 1}
-          startDate={j.startDate}
-          describtion={j.describtion}
-        />
+        <JobsSection key={i} {...j} />
       ))}
     </div>
   );

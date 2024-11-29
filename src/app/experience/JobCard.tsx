@@ -11,7 +11,7 @@ const JobCard = (props: TJobData) => {
 
   return (
     <div className="mb-8">
-      <div className="text-muted-foreground/50 text-sm flex justify-between items-center">
+      <div className="text-muted-foreground/90 text-sm flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <Calendar className="w-4 h-4" />
           <span>{formattedStartDate}</span>
@@ -42,10 +42,12 @@ const JobCard = (props: TJobData) => {
           <h2 className="text-primary text-xs">Tech Stack</h2>
           <div className="flex gap-2 mt-2">
             {tech.map((t, i) => (
-              <div className="w-8 h-8" key={i}>
-                {React.cloneElement(t.icon, {
-                  className: "w-full h-full",
-                })}
+              <div className="transition w-8 h-8 overflow-hidden  flex gap-2 items-center">
+                <div className="transition w-8 h-8" key={i}>
+                  {React.cloneElement(t.icon, {
+                    className: "w-8 h-8",
+                  })}
+                </div>
               </div>
             ))}
           </div>

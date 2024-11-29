@@ -1,31 +1,7 @@
 import React from "react";
 
 import ProjectCard from "./ProjectCard";
-
-export interface props {
-  name: string;
-  link: string;
-  github: string;
-  desc: string;
-  img: string;
-}
-
-const data: props[] = [
-  {
-    name: "Projectg 1",
-    link: "#",
-    github: "#",
-    desc: "lorem",
-    img: "/images/project1.png",
-  },
-  {
-    name: "Projectg 2",
-    link: "#",
-    github: "#",
-    desc: "lorem",
-    img: "/images/project1.png",
-  },
-];
+import { PROJECT_DATA } from "@/data";
 
 const Projects = () => {
   return (
@@ -38,7 +14,7 @@ const Projects = () => {
         </p>
       </div>
       <div className="grid grid-cols-2 gap-6 ">
-        {data.map((d, i) => (
+        {PROJECT_DATA.map((d, i) => (
           <ProjectCard key={i} {...d} />
         ))}
       </div>

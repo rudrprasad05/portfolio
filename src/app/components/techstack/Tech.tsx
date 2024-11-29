@@ -1,31 +1,6 @@
-import React from "react";
-
 import { ReactIconSvg, SpringIconSvg } from "../svg";
 import TechCard from "./TechCard";
-import { TTeckStack } from "@/types";
-
-export const TECH_STACK: TTeckStack[] = [
-  {
-    icon: <ReactIconSvg className="w-full" />,
-    name: "React",
-    desc: "A dynamic javascript framework made by meta. ",
-  },
-  {
-    icon: <SpringIconSvg />,
-    name: "Spring",
-    desc: "A dynamic java framework made by meta. ",
-  },
-  {
-    icon: <SpringIconSvg />,
-    name: "Spring",
-    desc: "A dynamic java framework made by meta. ",
-  },
-  {
-    icon: <SpringIconSvg />,
-    name: "Spring",
-    desc: "A dynamic java framework made by meta. ",
-  },
-];
+import { TECH_STACK } from "@/data";
 
 const TechStack = () => {
   return (

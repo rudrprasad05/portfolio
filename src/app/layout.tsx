@@ -1,4 +1,4 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { Roboto } from "next/font/google";
 
@@ -36,6 +36,7 @@ export default function RootLayout({
             <SideNavBar />
             <Toaster />
             <LayoutContainer>
+              <SidebarTrigger />
               {/* <Analytics /> */}
               <ThemeSwitcherOneClick seeName={false} />
               {children}
