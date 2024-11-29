@@ -66,17 +66,17 @@ const groups = [
       {
         title: "Devlog",
         icon: <Code />,
-        slug: "#",
+        slug: "/devlog",
       },
       {
         title: "Reads",
         icon: <Book />,
-        slug: "#",
+        slug: "/reads",
       },
       {
         title: "Tech Stack",
         icon: <Layers />,
-        slug: "#",
+        slug: "/techstack",
       },
     ],
   },
@@ -86,17 +86,17 @@ const groups = [
       {
         title: "Instagram",
         icon: <FaInstagram />,
-        slug: "#",
+        slug: "https://www.instagram.com/not_rudr",
       },
       {
         title: "Linkdin",
         icon: <FaLinkedin />,
-        slug: "#",
+        slug: "https://www.linkedin.com/in/rudr-prasad",
       },
       {
         title: "Github",
         icon: <FaGithub />,
-        slug: "#",
+        slug: "https://github.com/rudrprasad05",
       },
     ],
   },

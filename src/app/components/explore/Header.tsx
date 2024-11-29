@@ -18,7 +18,7 @@ export default function Header() {
   return (
     <FullWidthContainer>
       <div className="flex flex-col gap-2">
-        <h1 className="text-6xl">Hi, Im Rudr</h1>
+        <h1 className="text-5xl">Hi, Im Rudr</h1>
         <h1 className="text-4xl">
           A <span className="text-muted-foreground">Software</span> Developer
         </h1>

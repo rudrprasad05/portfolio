@@ -10,7 +10,7 @@ const page = () => {
     <PaddedContainer>
       <FullWidthContainer>
         <div className="flex flex-col gap-2">
-          <h1 className="text-6xl">Experience</h1>
+          <h1 className="text-5xl">Experience</h1>
           <p className="text-lg text-muted-foreground/90">
             A detailed look into my employment history
           </p>
