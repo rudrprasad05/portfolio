@@ -1,12 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function GET(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<NextResponse> {
-  const token = req.cookies?.jwt; // Retrieve the token from cookies
+  const cookieStore = await cookies();
 
+  const token = cookieStore.get("token");
+  console.log(token);
   if (!token) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
@@ -15,7 +18,7 @@ export async function GET(
     const response = await fetch("http://localhost:8080/protected", {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token.value}`,
       },
     });
 

@@ -3,8 +3,12 @@ import React from "react";
 
 import FullWidthContainer from "../components/FullWidthContainer";
 import PaddedContainer from "../components/PaddedContainer";
+import { cookies } from "next/headers";
 
 const page = () => {
+  const cookieStore = cookies();
+
+  console.log(cookieStore.get("token"));
   return (
     <PaddedContainer>
       <FullWidthContainer>

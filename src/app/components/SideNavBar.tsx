@@ -28,6 +28,8 @@ import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { useSession } from "@/hooks/useSession";
+import { Button } from "@/components/ui/button";
 
 const groups = [
   {
@@ -104,6 +106,7 @@ const groups = [
 
 export function SideNavBar() {
   const pathname = usePathname();
+  const { session, logout } = useSession();
   console.log(pathname);
   return (
     <Sidebar>
@@ -154,7 +157,9 @@ export function SideNavBar() {
         ))}
         <SidebarGroup />
       </SidebarContent>
-      <SidebarFooter></SidebarFooter>
+      <SidebarFooter>
+        {session && <Button onClick={logout}>Logout</Button>}
+      </SidebarFooter>
     </Sidebar>
   );
 }
