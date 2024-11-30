@@ -1,0 +1,39 @@
+"use client";
+
+import React, { useEffect } from "react";
+
+import FullWidthContainer from "../components/FullWidthContainer";
+import PaddedContainer from "../components/PaddedContainer";
+import { useSession } from "@/hooks/useSession";
+import { useRouter } from "next/navigation";
+
+const page = () => {
+  const { session, loading } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !session) {
+      //   router.push("/login");
+      console.log("not auth");
+    }
+  }, [loading, session, router]);
+
+  if (loading) return <div>Loading...</div>;
+  if (!session) return null;
+
+  return <div>Welcome to Admin!</div>;
+  //   return (
+  //     <PaddedContainer>
+  //       <FullWidthContainer>
+  //         <div className="flex flex-col gap-2">
+  //           <h1 className="text-5xl">Admin</h1>
+  //           <p className="text-lg text-muted-foreground/90">
+  //             A detailed look into my employment history
+  //           </p>
+  //         </div>
+  //       </FullWidthContainer>
+  //     </PaddedContainer>
+  //   );
+};
+
+export default page;
