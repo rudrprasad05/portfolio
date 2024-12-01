@@ -6,6 +6,9 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useSession } from "@/hooks/useSession";
 
 const loginSchema = z.object({
   email: z.string(),
@@ -15,6 +18,7 @@ const loginSchema = z.object({
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 const page = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,29 +26,11 @@ const page = () => {
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
+  const { login } = useSession();
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Login successful:", result);
-        alert("Login successful!");
-
-        // Optionally save token to cookies/localStorage here
-        document.cookie = `token=${result.token}; path=/; max-age=86400`;
-      } else {
-        const error = await response.json();
-        console.error("Login failed:", error);
-        alert(error.message || "Login failed");
-      }
+      login(data);
     } catch (err) {
       console.error("Unexpected error:", err);
       alert("Unexpected error occurred");

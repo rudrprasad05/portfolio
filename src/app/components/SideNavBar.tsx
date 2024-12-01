@@ -30,6 +30,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { useSession } from "@/hooks/useSession";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 const groups = [
   {
@@ -107,7 +108,13 @@ const groups = [
 export function SideNavBar() {
   const pathname = usePathname();
   const { session, logout } = useSession();
-  console.log(pathname);
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      // Optional: Can fetch session explicitly here if necessary
+    }
+  }, [status]);
+
   return (
     <Sidebar>
       <SidebarHeader className="p-6">
