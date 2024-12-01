@@ -42,8 +42,11 @@ const JobCard = (props: TJobData) => {
           <h2 className="text-primary text-xs">Tech Stack</h2>
           <div className="flex gap-2 mt-2">
             {tech.map((t, i) => (
-              <div className="transition w-8 h-8 overflow-hidden  flex gap-2 items-center">
-                <div className="transition w-8 h-8" key={i}>
+              <div
+                key={i}
+                className="transition w-8 h-8 overflow-hidden  flex gap-2 items-center"
+              >
+                <div className="transition w-8 h-8">
                   {React.cloneElement(t.icon, {
                     className: "w-8 h-8",
                   })}

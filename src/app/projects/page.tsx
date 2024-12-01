@@ -16,8 +16,8 @@ const page = () => {
           </p>
         </div>
         <div className="mt-12">
-          {PROJECT_DATA.map((p) => (
-            <ProjectCard {...p} />
+          {PROJECT_DATA.map((p, i) => (
+            <ProjectCard key={i} {...p} />
           ))}
         </div>
       </FullWidthContainer>

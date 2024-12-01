@@ -17,7 +17,7 @@ const loginSchema = z.object({
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   const {
     register,
@@ -72,4 +72,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

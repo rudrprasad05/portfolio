@@ -1,8 +1,8 @@
 // middleware.ts
 import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(req: any) {
+export function middleware(req: NextRequest) {
   const cookieStore = cookies();
   const url = req.nextUrl.clone();
   url.pathname = "/auth/login";
