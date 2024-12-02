@@ -1,10 +1,10 @@
-import React from "react";
-import { props } from "./Projects";
 import { Card, CardContent } from "@/components/ui/card";
-import { FaGithub } from "react-icons/fa";
+import { IProjectData } from "@/types";
 import { SquareArrowOutUpRightIcon } from "lucide-react";
+import React from "react";
+import { FaGithub } from "react-icons/fa";
 
-const ProjectCard: React.FC<props> = (data) => {
+const ProjectCard: React.FC<IProjectData> = (data) => {
   return (
     <Card>
       <div className="w-full h-52">
