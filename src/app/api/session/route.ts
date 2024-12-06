@@ -4,15 +4,15 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   const cookieStore = await cookies();
-
   const token = cookieStore.get("token");
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   console.log(token);
   if (!token) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const response = await fetch("http://localhost:8080/protected", {
+    const response = await fetch(apiUrl + "/admin", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token.value}`,

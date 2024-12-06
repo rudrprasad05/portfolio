@@ -1,4 +1,4 @@
-import { ReactIconSvg, SpringIconSvg } from "@/app/components/svg";
+import { CIconSvg, ReactIconSvg, SpringIconSvg } from "@/app/components/svg";
 import { ETechStack, IProjectData, TechStackType, TJobData } from "@/types";
 import React, { SVGProps } from "react";
 
@@ -8,12 +8,17 @@ export const ReactTech: TechStackType = {
   desc: "A dynamic javascript framework made by meta. ",
 };
 export const SpringTech: TechStackType = {
-  icon: <ReactIconSvg className="w-full" />,
-  name: "React",
+  icon: <SpringIconSvg className="w-full" />,
+  name: "Spring",
+  desc: "A dynamic javascript framework made by meta. ",
+};
+export const CSharpTech: TechStackType = {
+  icon: <CIconSvg className="w-full" />,
+  name: "ASP.NET C#",
   desc: "A dynamic javascript framework made by meta. ",
 };
 
-export const TECH_STACK: TechStackType[] = [ReactTech, SpringTech];
+export const TECH_STACK: TechStackType[] = [ReactTech, SpringTech, CSharpTech];
 
 export const JOBS_DATA: TJobData[] = [
   {

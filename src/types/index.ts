@@ -38,3 +38,28 @@ export interface IProjectData {
   img: string;
   tech: TechStackType[];
 }
+
+// db
+
+export type Tag = {
+  // Add the fields for the Tag model here if necessary
+  id: number;
+  name: string;
+};
+
+export type Media = {
+  id: number;
+  name: string;
+  alt: string;
+  imageId: number;
+  createdAt: string;
+};
+
+export type Post = {
+  id: number | null;
+  title: string;
+  content: string;
+  createdAt: string | null;
+  tags: Tag[];
+  featuredMedia: Media | null;
+};

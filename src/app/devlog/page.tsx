@@ -1,14 +1,17 @@
+import { GetAllPosts } from "@/actions/posts";
 import { JOBS_DATA } from "@/data";
+import { cookies } from "next/headers";
 import React from "react";
 
 import FullWidthContainer from "../components/FullWidthContainer";
 import PaddedContainer from "../components/PaddedContainer";
-import { cookies } from "next/headers";
 
-const page = () => {
+const page = async () => {
   const cookieStore = cookies();
-
+  const posts = await GetAllPosts();
+  console.log(posts);
   console.log(cookieStore.get("token"));
+
   return (
     <PaddedContainer>
       <FullWidthContainer>
@@ -18,6 +21,11 @@ const page = () => {
             A detailed look into my employment history
           </p>
         </div>
+        {posts?.map((p) => (
+          <div>
+            {p.title} {p.content}
+          </div>
+        ))}
       </FullWidthContainer>
     </PaddedContainer>
   );
