@@ -109,12 +109,6 @@ export function SideNavBar() {
   const pathname = usePathname();
   const { session, logout } = useSession();
 
-  useEffect(() => {
-    if (status === "authenticated") {
-      // Optional: Can fetch session explicitly here if necessary
-    }
-  }, [status]);
-
   return (
     <Sidebar>
       <SidebarHeader className="p-6">

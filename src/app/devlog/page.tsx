@@ -22,7 +22,7 @@ const page = async () => {
           </p>
         </div>
         {posts?.map((p) => (
-          <div>
+          <div key={p.id}>
             {p.title} {p.content}
           </div>
         ))}
