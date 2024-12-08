@@ -12,7 +12,7 @@ import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
 
 import { toast } from "sonner";
-import FullWidthContainer from "../FullWidthContainer";
+import FullWidthContainer from "../global/FullWidthContainer";
 
 export default function Header() {
   return (

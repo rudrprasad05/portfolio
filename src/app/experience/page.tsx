@@ -1,6 +1,6 @@
 import React from "react";
-import PaddedContainer from "../components/PaddedContainer";
-import FullWidthContainer from "../components/FullWidthContainer";
+import PaddedContainer from "../components/global/PaddedContainer";
+import FullWidthContainer from "../components/global/FullWidthContainer";
 
 import JobCard from "./JobCard";
 import { JOBS_DATA } from "@/data";

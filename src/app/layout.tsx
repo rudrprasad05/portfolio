@@ -1,9 +1,10 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { Roboto } from "next/font/google";
+import Head from "next/head";
 
-import LayoutContainer from "./components/LayoutContainer";
-import { SideNavBar } from "./components/SideNavBar";
+import LayoutContainer from "./components/global/LayoutContainer";
+import { SideNavBar } from "./components/global/SideNavBar";
 import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
 
@@ -30,6 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark overflow-scroll">
+      <head>
+        <title>Rudr Prasad</title>
+      </head>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <body className={`${roboto.className} flex items-center`}>
           <SidebarProvider className="">

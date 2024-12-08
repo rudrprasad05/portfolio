@@ -1,6 +1,6 @@
 import { Loader2 } from "lucide-react";
 import React from "react";
-import LayoutContainer from "./components/LayoutContainer";
+import LayoutContainer from "./components/global/LayoutContainer";
 
 export default function loading() {
   return (

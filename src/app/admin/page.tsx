@@ -2,8 +2,8 @@
 
 import React, { useEffect } from "react";
 
-import FullWidthContainer from "../components/FullWidthContainer";
-import PaddedContainer from "../components/PaddedContainer";
+import FullWidthContainer from "../components/global/FullWidthContainer";
+import PaddedContainer from "../components/global/PaddedContainer";
 import { useSession } from "@/hooks/useSession";
 import { useRouter } from "next/navigation";
 
