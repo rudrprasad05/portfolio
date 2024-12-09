@@ -21,6 +21,7 @@ import {
   Folder,
   Info,
   Layers,
+  LogIn,
 } from "lucide-react";
 import Image from "next/image";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
@@ -158,7 +159,12 @@ export function SideNavBar() {
         ))}
         <SidebarGroup />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="px-4">
+        {!session && (
+          <Link href={"/auth/login"}>
+            <LogIn />
+          </Link>
+        )}
         {session && <Button onClick={logout}>Logout</Button>}
       </SidebarFooter>
     </Sidebar>

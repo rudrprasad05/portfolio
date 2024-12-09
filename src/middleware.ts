@@ -1,10 +1,13 @@
 // middleware.ts
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import { API_URL } from "./const";
+import { toast } from "sonner";
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const cookieStore = cookies();
   const url = req.nextUrl.clone();
+
   url.pathname = "/auth/login";
 
   const token = cookieStore.get("token")?.value;
@@ -13,14 +16,14 @@ export function middleware(req: NextRequest) {
   }
 
   // Validate token via backend
-  const isValid = fetch("http://localhost:8080/protected", {
+  const isValid = await fetch(API_URL + "/token", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
-  if (!isValid) {
+  if (isValid.status == 403) {
     return NextResponse.redirect(url);
   }
 

@@ -1,17 +1,17 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useSession } from "@/hooks/useSession";
-import Link from "next/link";
 
 const loginSchema = z.object({
+  name: z.string(),
   email: z.string(),
   password: z.string(),
 });
@@ -27,11 +27,12 @@ const Page = () => {
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
   });
-  const { login, session } = useSession();
+  const { login, register: registerUser } = useSession();
 
   const onSubmit = async (data: LoginFormValues) => {
     try {
-      login(data);
+      //   login(data);
+      registerUser(data);
     } catch (err) {
       console.error("Unexpected error:", err);
       alert("Unexpected error occurred");
@@ -59,6 +60,13 @@ const Page = () => {
             <p className="text-red-500 text-sm">{errors.email.message}</p>
           )}
         </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <Input id="name" placeholder="Name" {...register("name")} />
+          {errors.name && (
+            <p className="text-red-500 text-sm">{errors.name.message}</p>
+          )}
+        </div>
 
         <div>
           <label htmlFor="password">Password</label>
@@ -71,18 +79,6 @@ const Page = () => {
           {errors.password && (
             <p className="text-red-500 text-sm">{errors.password.message}</p>
           )}
-        </div>
-
-        <div>
-          Dont have an account?{" "}
-          <Link
-            className={
-              "text-secondary-foreground/70 underline-offset-4 hover:underline"
-            }
-            href="/auth/register"
-          >
-            Register here
-          </Link>
         </div>
 
         <Button type="submit" disabled={isSubmitting}>
