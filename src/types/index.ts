@@ -40,26 +40,86 @@ export interface IProjectData {
 }
 
 // db
+export enum ContentType {
+  P = "P",
+  H1 = "H1",
+  H2 = "H2",
+  H3 = "H3",
+  LINK = "LINK",
+  CODE = "CODE",
+  IMAGE = "IMAGE",
+}
 
-export type Tag = {
-  // Add the fields for the Tag model here if necessary
+export enum UserType {
+  ADMIN = "ADMIN",
+  USER = "USER",
+}
+
+export type User = {
   id: number;
+  email: string;
   name: string;
+  hashedPassword: string;
+  createdAt: Date;
+  type: UserType;
+  posts: Post[];
+  comments: Comment[];
+  media: Media[];
+};
+
+export type Post = {
+  id: number;
+  title: string;
+  content: Content[];
+  featuredImageId: number | null;
+  featuredImage?: Media | null;
+  publishedAt: Date;
+  authorId: number;
+  author: User;
+  postCategories: PostCategory[];
+  comments: Comment[];
+  createdAt: Date;
 };
 
 export type Media = {
   id: number;
-  name: string;
-  alt: string;
-  imageId: number;
-  createdAt: string;
+  size: string;
+  createdAt: Date;
+  post: Post[];
+  userId?: number | null;
+  user?: User | null;
 };
 
-export type Post = {
-  id: number | null;
-  title: string;
+export type Content = {
+  id: number;
+  createdAt: Date;
+  data: string;
+  type: ContentType;
+  postId: number;
+  post: Post;
+};
+
+export type PostCategory = {
+  id: number;
+  createdAt: Date;
+  postId: number;
+  post: Post;
+  categoryId: number;
+  category: Category;
+};
+
+export type Category = {
+  id: number;
+  name: string;
+  postCategories: PostCategory[];
+};
+
+export type Comment = {
+  id: number;
   content: string;
-  createdAt: string | null;
-  tags: Tag[];
-  featuredMedia: Media | null;
+  createdAt: Date;
+  postId: number;
+  post: Post;
+  userId: number;
+  user: User;
 };
