@@ -17,7 +17,7 @@ export function useSession() {
       const response = await fetch(API_URL + "/token", {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `${token}`,
         },
       });
       if (response.ok) {
@@ -30,7 +30,7 @@ export function useSession() {
       setLoading(false);
     }
     fetchSession();
-  }, []);
+  }, [token]);
 
   const logout = () => {
     // Remove token from cookies (or local storage if that's where it's stored)
@@ -57,7 +57,7 @@ export function useSession() {
       if (response.ok) {
         const result = await response.json();
         toast.success("Successfully Registered");
-        Cookies.set("token", `Bearer ${result.token}`, { expires: 1 });
+        Cookies.set("token", `${result.token}`, { expires: 1 });
         router.refresh();
         router.push("/admin");
       } else {
@@ -85,9 +85,7 @@ export function useSession() {
       if (response.ok) {
         const result = await response.json();
         toast.success("Successfully Logged in");
-        Cookies.set("token", `Bearer ${result.token}`, { expires: 1 }); // Store token in cookies for 1 day
-        router.refresh();
-        console.log(result);
+        Cookies.set("token", `${result.token}`, { expires: 1 }); // Store token in cookies for 1 day
         router.push("/admin");
       } else {
         const error = await response.json();

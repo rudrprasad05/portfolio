@@ -19,7 +19,7 @@ export async function middleware(req: NextRequest) {
   const isValid = await fetch(API_URL + "/token", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
     },
   });
 
