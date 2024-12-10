@@ -29,9 +29,9 @@ import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { useSession } from "@/hooks/useSession";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
+import { useSession } from "@/hooks/useSessionContext";
 
 const groups = [
   {

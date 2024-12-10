@@ -9,6 +9,7 @@ import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
 
 import "./globals.css";
+import { SessionProvider } from "@/hooks/useSessionContext";
 
 const roboto = Roboto({
   weight: ["400", "900"],
@@ -36,16 +37,18 @@ export default function RootLayout({
       </head>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <body className={`${roboto.className} flex items-center`}>
-          <SidebarProvider className="">
-            <SideNavBar />
-            <Toaster />
-            <LayoutContainer>
-              <SidebarTrigger />
-              {/* <Analytics /> */}
-              <ThemeSwitcherOneClick seeName={false} />
-              {children}
-            </LayoutContainer>
-          </SidebarProvider>
+          <SessionProvider>
+            <SidebarProvider className="">
+              <SideNavBar />
+              <Toaster />
+              <LayoutContainer>
+                <SidebarTrigger />
+                {/* <Analytics /> */}
+                <ThemeSwitcherOneClick seeName={false} />
+                {children}
+              </LayoutContainer>
+            </SidebarProvider>
+          </SessionProvider>
         </body>
       </ThemeProvider>
     </html>

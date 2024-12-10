@@ -1,5 +1,5 @@
 import { API_URL } from "@/const";
-import { Post } from "@/types";
+import { Category, Post } from "@/types";
 
 export const GetAllPosts = async () => {
   try {
@@ -11,6 +11,27 @@ export const GetAllPosts = async () => {
 
     const data: { message: string; posts: Post[] } = await res.json();
     return data.posts;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
+};
+
+export const NewPost = async (name: string) => {
+  try {
+    const res = await fetch(`${API_URL}/category/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+
+    const data: { message: string; category: Category[] } = await res.json();
+
+    return data.category;
   } catch (error) {
     console.error("Error fetching posts:", error);
     return [];

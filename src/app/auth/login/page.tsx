@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,8 +8,9 @@ import { Input } from "@/components/ui/input";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useSession } from "@/hooks/useSession";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
+import { useSession } from "@/hooks/useSessionContext";
 
 const loginSchema = z.object({
   email: z.string(),
@@ -20,6 +21,8 @@ type LoginFormValues = z.infer<typeof loginSchema>;
 
 const Page = () => {
   const router = useRouter();
+  const [state, setState] = useState<"LOADING" | "IDLE">("IDLE");
+
   const {
     register,
     handleSubmit,
@@ -30,11 +33,12 @@ const Page = () => {
   const { login, session } = useSession();
 
   const onSubmit = async (data: LoginFormValues) => {
+    setState("LOADING");
     try {
-      login(data);
+      login(data).then(() => setState("IDLE"));
     } catch (err) {
       console.error("Unexpected error:", err);
-      alert("Unexpected error occurred");
+      setState("IDLE");
     }
   };
 
@@ -85,8 +89,13 @@ const Page = () => {
           </Link>
         </div>
 
-        <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Logging in..." : "Login"}
+        <Button
+          type="submit"
+          className="flex gap-2"
+          disabled={state == "LOADING"}
+        >
+          {state == "LOADING" && <Loader2 className={"animate-spin mr-3"} />}
+          Login
         </Button>
       </form>
     </div>

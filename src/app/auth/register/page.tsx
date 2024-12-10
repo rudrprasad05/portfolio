@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useSession } from "@/hooks/useSession";
+import { useSession } from "@/hooks/useSessionContext";
 
 const loginSchema = z.object({
   name: z.string(),

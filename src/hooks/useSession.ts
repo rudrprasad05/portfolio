@@ -5,32 +5,26 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { API_URL } from "@/const";
 
-export function useSession() {
+interface User {
+  email: string;
+  id: number;
+  name: string;
+  hashedPassword: string;
+  createdAt: Date;
+  type: any;
+}
+
+interface Session {
+  user: User;
+  isLoggedIn: boolean;
+}
+
+function useSession() {
   const router = useRouter();
   const token = Cookies.get("token");
   console.log(token);
-  const [session, setSession] = useState(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchSession() {
-      const response = await fetch(API_URL + "/token", {
-        method: "POST",
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setSession(data);
-      } else {
-        console.log(response);
-        setSession(null);
-      }
-      setLoading(false);
-    }
-    fetchSession();
-  }, [token]);
 
   const logout = () => {
     // Remove token from cookies (or local storage if that's where it's stored)
@@ -55,14 +49,18 @@ export function useSession() {
       });
 
       if (response.ok) {
-        const result = await response.json();
+        const result: { message: string; user: User; token: string } =
+          await response.json();
         toast.success("Successfully Registered");
+        setSession({ user: result.user, isLoggedIn: true });
+
         Cookies.set("token", `${result.token}`, { expires: 1 });
         router.refresh();
         router.push("/admin");
       } else {
         const error = await response.json();
         console.error("Login failed:", error);
+        setSession(null);
         toast.error("Login failed");
       }
       console.log(data);
@@ -84,6 +82,8 @@ export function useSession() {
 
       if (response.ok) {
         const result = await response.json();
+        console.log(result);
+        setSession({ user: result.user, isLoggedIn: true });
         toast.success("Successfully Logged in");
         Cookies.set("token", `${result.token}`, { expires: 1 }); // Store token in cookies for 1 day
         router.push("/admin");
@@ -100,3 +100,24 @@ export function useSession() {
 
   return { session, loading, logout, login, register };
 }
+
+// useEffect(() => {
+//   async function fetchSession() {
+//     const response = await fetch(API_URL + "/token", {
+//       method: "POST",
+//       headers: {
+//         Authorization: `${token}`,
+//       },
+//     });
+//     if (response.ok) {
+//       const data = await response.json();
+//       setSession((prev) => prev);
+//     } else {
+//       console.log(response);
+//       setSession(null);
+//     }
+//     setLoading(false);
+//     console.log(session);
+//   }
+//   fetchSession();
+// }, [token, session]);
