@@ -63,8 +63,6 @@ export default function NewPostModal({ cats }: { cats: Category[] }) {
   });
 
   const onSubmit = async (data: ChangePasswordFormType) => {
-    // title, categoryId, userId
-    // setState("LOADING");
     try {
       const res = await NewPost(
         data.name,

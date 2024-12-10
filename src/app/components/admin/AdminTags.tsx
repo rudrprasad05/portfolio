@@ -16,8 +16,10 @@ export default function AdminTags({ categorys }: { categorys: Category[] }) {
           <div className="text-center text-muted">No Categories</div>
         </div>
       )}
-      {categorys.length > 0 &&
-        categorys.map((c) => <CategoryCard key={c.id} category={c} />)}
+      <div className="grid grid-cols-6 gap-4 w-full">
+        {categorys.length > 0 &&
+          categorys.map((c) => <CategoryCard key={c.id} category={c} />)}
+      </div>
     </div>
   );
 }

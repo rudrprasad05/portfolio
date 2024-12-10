@@ -3,13 +3,15 @@ import { Category, Post } from "@/types";
 
 export const GetAllCategory = async () => {
   try {
-    const res = await fetch(`${API_URL}/category`, { method: "GET" });
+    const res = await fetch(`${API_URL}/category?_=${Date.now()}`, {
+      method: "GET",
+    });
 
     if (!res.ok) {
       throw new Error("Failed to fetch posts");
     }
-
     const data: { message: string; category: Category[] } = await res.json();
+    console.log(data);
 
     return data.category;
   } catch (error) {

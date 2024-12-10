@@ -20,6 +20,11 @@ export default function AdminPosts({
           <div className="text-center text-muted">No Posts</div>
         </div>
       )}
+      {posts.map((p) => (
+        <div className="w-full h-[120px] border border-dashed rounded-lg flex items-center justify-center">
+          <div className="text-center text-muted">{p.title}</div>
+        </div>
+      ))}
     </div>
   );
 }

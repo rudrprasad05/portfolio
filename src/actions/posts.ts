@@ -3,7 +3,7 @@ import { Category, Post } from "@/types";
 
 export const GetAllPosts = async () => {
   try {
-    const res = await fetch(`${API_URL}/posts`); // Assuming the endpoint for posts is "/posts"
+    const res = await fetch(`${API_URL}/posts?_=${Date.now()}`); // Assuming the endpoint for posts is "/posts"
 
     if (!res.ok) {
       throw new Error("Failed to fetch posts");

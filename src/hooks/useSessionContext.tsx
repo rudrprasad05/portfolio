@@ -54,9 +54,9 @@ export const SessionProvider = ({
         method: "POST",
         headers: { Authorization: `${token}` },
       })
-        .then((res) => res.json())
-        .then((data) => {
-          setSession({ user: data.user, isLoggedIn: true });
+        .then(async (res) => {
+          const r = await res.json();
+          setSession({ user: r.user, isLoggedIn: true });
         })
         .catch(() => {
           Cookies.remove("token");

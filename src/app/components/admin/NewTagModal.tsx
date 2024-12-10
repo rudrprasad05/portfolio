@@ -54,6 +54,7 @@ export default function NewTagModal() {
     try {
       const res = await NewCategory(data.name).then((r) => {
         setState("IDLE");
+        setOpen(false);
         router.refresh();
         toast.success("New Tag created");
       });
