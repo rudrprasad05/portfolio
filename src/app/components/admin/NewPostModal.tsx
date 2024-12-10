@@ -37,6 +37,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useSession } from "@/hooks/useSessionContext";
+import { NewPost } from "@/actions/posts";
 
 export default function NewPostModal({ cats }: { cats: Category[] }) {
   const [open, setOpen] = useState(false);
@@ -64,15 +65,16 @@ export default function NewPostModal({ cats }: { cats: Category[] }) {
   const onSubmit = async (data: ChangePasswordFormType) => {
     // title, categoryId, userId
     // setState("LOADING");
-    console.log(data);
-    console.log(session?.user.id);
     try {
-      const res = await NewCategory(data.name).then((r) => {
+      const res = await NewPost(
+        data.name,
+        data.tags,
+        session?.user.id as number
+      ).then((r) => {
         setState("IDLE");
         router.refresh();
         toast.success("New Tag created");
       });
-      console.log(res);
     } catch (error) {
       setState("IDLE");
     }

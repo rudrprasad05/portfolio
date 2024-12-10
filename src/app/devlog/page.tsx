@@ -10,7 +10,7 @@ import UnderConstruction from "../components/global/UnderConstruction";
 const page = async () => {
   const cookieStore = cookies();
   // const posts = await PING();
-  // console.log(posts);
+  // ;
 
   return (
     <>

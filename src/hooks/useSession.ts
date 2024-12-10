@@ -22,7 +22,6 @@ interface Session {
 function useSession() {
   const router = useRouter();
   const token = Cookies.get("token");
-  console.log(token);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -63,7 +62,6 @@ function useSession() {
         setSession(null);
         toast.error("Login failed");
       }
-      console.log(data);
     } catch (err) {
       console.error("Unexpected error:", err);
       toast.error("Unexpected error occurred");
@@ -82,7 +80,6 @@ function useSession() {
 
       if (response.ok) {
         const result = await response.json();
-        console.log(result);
         setSession({ user: result.user, isLoggedIn: true });
         toast.success("Successfully Logged in");
         Cookies.set("token", `${result.token}`, { expires: 1 }); // Store token in cookies for 1 day
@@ -113,11 +110,11 @@ function useSession() {
 //       const data = await response.json();
 //       setSession((prev) => prev);
 //     } else {
-//       console.log(response);
+//       ;
 //       setSession(null);
 //     }
 //     setLoading(false);
-//     console.log(session);
+//     ;
 //   }
 //   fetchSession();
 // }, [token, session]);

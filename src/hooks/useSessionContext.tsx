@@ -50,8 +50,9 @@ export const SessionProvider = ({
   useEffect(() => {
     const token = Cookies.get("token");
     if (token) {
-      fetch(API_URL + "/auth/me", {
-        headers: { Authorization: `Bearer ${token}` },
+      fetch(API_URL + "/token", {
+        method: "POST",
+        headers: { Authorization: `${token}` },
       })
         .then((res) => res.json())
         .then((data) => {

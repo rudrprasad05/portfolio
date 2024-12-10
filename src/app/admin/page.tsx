@@ -9,7 +9,7 @@ import React from "react";
 const page = async () => {
   const res = await GetAllPosts();
   const cats = await GetAllCategory();
-  console.log(cats);
+
   return (
     <PaddedContainer>
       <FullWidthContainer>

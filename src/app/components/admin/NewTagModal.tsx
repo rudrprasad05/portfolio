@@ -57,7 +57,6 @@ export default function NewTagModal() {
         router.refresh();
         toast.success("New Tag created");
       });
-      console.log(res);
     } catch (error) {
       setState("IDLE");
     }

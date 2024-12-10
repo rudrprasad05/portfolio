@@ -17,21 +17,25 @@ export const GetAllPosts = async () => {
   }
 };
 
-export const NewPost = async (name: string) => {
+export const NewPost = async (
+  title: string,
+  categoryId: number,
+  userId: number
+) => {
   try {
-    const res = await fetch(`${API_URL}/category/new`, {
+    const res = await fetch(`${API_URL}/posts/new`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ title, categoryId, userId }),
     });
 
     if (!res.ok) {
       throw new Error("Failed to fetch posts");
     }
 
-    const data: { message: string; category: Category[] } = await res.json();
+    const data: { message: string; post: Category[] } = await res.json();
 
-    return data.category;
+    return data.post;
   } catch (error) {
     console.error("Error fetching posts:", error);
     return [];

@@ -5,7 +5,6 @@ import NewTagModal from "./NewTagModal";
 import CategoryCard from "./CategoryCard";
 
 export default function AdminTags({ categorys }: { categorys: Category[] }) {
-  console.log(categorys);
   return (
     <div className="w-full my-6 flex flex-col gap-6">
       <div className="w-full flex justify-between">
