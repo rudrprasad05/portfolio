@@ -1,6 +1,7 @@
 import React from "react";
 import NewPostModal from "./NewPostModal";
 import { Category, Post } from "@/types";
+import PostCard from "./PostCard";
 
 export default function AdminPosts({
   posts,
@@ -21,9 +22,7 @@ export default function AdminPosts({
         </div>
       )}
       {posts.map((p) => (
-        <div className="w-full h-[120px] border border-dashed rounded-lg flex items-center justify-center">
-          <div className="text-center text-muted">{p.title}</div>
-        </div>
+        <PostCard post={p} />
       ))}
     </div>
   );

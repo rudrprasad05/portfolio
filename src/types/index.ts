@@ -84,6 +84,7 @@ export type Post = {
 export type Media = {
   id: number;
   size: string;
+  src: string;
   createdAt: Date;
   post: Post[];
   userId?: number | null;
