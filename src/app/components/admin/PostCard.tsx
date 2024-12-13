@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Post } from "@/types";
 import { format } from "date-fns";
 import { Calendar } from "lucide-react";
+import Link from "next/link";
 import React, { useState } from "react";
 
 export default function PostCard({ post }: { post: Post }) {
@@ -38,9 +39,9 @@ export default function PostCard({ post }: { post: Post }) {
       <CardContent className="p-6 col-span-1 w-1/2">
         <div>
           <h1>{post.title}</h1>
-          <div>
-            {/* <Badge>{post.postCategories[0].category.name}</Badge> */}
-          </div>
+          <Link href={"/admin/post/" + post.id + "/edit"}>
+            <Badge>Edit</Badge>
+          </Link>
         </div>
         <h4 className="flex gap-2 items-center text-muted-foreground/70 text-sm">
           <Calendar className="w-4 h-4" />
