@@ -124,3 +124,17 @@ export type Comment = {
   userId: number;
   user: User;
 };
+
+export type FullPost = {
+  id: number;
+  title: string;
+  featuredImageId: number | null;
+  featuredImage: Media | null;
+  publishedAt: Date;
+  createdAt: Date;
+  authorId: number;
+  author: User;
+  postCategories: PostCategory[];
+  content: Content[];
+  comments: Comment[];
+};

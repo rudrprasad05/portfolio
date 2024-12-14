@@ -2,7 +2,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 import PaddedContainer from "../components/global/PaddedContainer";
 
-export default function loading() {
+export default function Loading() {
   return (
     <PaddedContainer className="flex flex-col gap-6">
       <div className="flex flex-col space-y-3 w-full">
