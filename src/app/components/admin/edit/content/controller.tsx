@@ -19,6 +19,8 @@ export default function ContentController() {
     switch (c) {
       case ContentType.P:
         return "Paragraph";
+      case ContentType.H1:
+        return "Title";
       default:
         return "Invalid";
     }
@@ -50,7 +52,7 @@ export default function ContentController() {
 const HandleState = ({ c }: { c: Partial<Content> }) => {
   switch (c.type) {
     case ContentType.H1:
-      return <H1 val={c.data} />;
+      return <H1 val={c} />;
     case ContentType.P:
       return <P val={c.data} />;
 
