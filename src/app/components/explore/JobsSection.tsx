@@ -15,15 +15,15 @@ const JobsSection = (props: TJobData) => {
         <div className="col-span-1 h-full flex flex-col items-center gap-2 py-1">
           <div
             content=""
-            className="grow rounded-full w-4 h-4 border-solid border-2 border-muted-foreground/40"
+            className="aspect-square rounded-full w-4 h-4 border-solid border-2 border-muted-foreground/40"
           ></div>
           <div
             content=""
-            className="rounded-full w-[2px] h-full bg-muted-foreground/40"
+            className="rounded-full h-full w-[2px] bg-muted-foreground/40"
           ></div>
           <div
             content=""
-            className="grow rounded-full w-4 h-4 border-solid border-2 border-muted-foreground/40"
+            className="aspect-square rounded-full w-4 h-4 border-solid border-2 border-muted-foreground/40"
           ></div>
         </div>
 
