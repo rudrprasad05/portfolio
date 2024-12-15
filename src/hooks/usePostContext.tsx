@@ -22,8 +22,8 @@ type StateEnum = "LOADING" | "UPLOADING" | "ERROR" | "IDLE";
 interface PostContextType {
   post: FullPost | undefined;
   state: StateEnum;
-  content: Content[] | undefined;
-  setContent: (a: SetStateAction<Content[] | undefined>) => void;
+  content: Partial<Content>[];
+  setContent: (a: SetStateAction<Partial<Content>[]>) => void;
 }
 
 // Create context
@@ -34,8 +34,8 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const params = useParams();
   const [post, setPost] = useState<FullPost | undefined>(undefined);
-  const [content, setContent] = useState<Content[] | undefined>(
-    post?.content || undefined
+  const [content, setContent] = useState<Partial<Content>[]>(
+    post?.content || []
   );
   const [state, setState] = useState<StateEnum>("LOADING");
 
