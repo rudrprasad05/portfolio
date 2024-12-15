@@ -21,7 +21,7 @@ export const GetOnePostWithAllRelatedTables = async (
   id: string
 ): Promise<FullPost | undefined> => {
   try {
-    const res = await fetch(`${API_URL}/posts?_=${Date.now()}&id=${id}`); // Assuming the endpoint for posts is "/posts"
+    const res = await fetch(`${API_URL}/posts`); // Assuming the endpoint for posts is "/posts"
 
     if (!res.ok) {
       throw new Error("Failed to fetch posts");
