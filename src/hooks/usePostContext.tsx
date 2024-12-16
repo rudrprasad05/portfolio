@@ -24,6 +24,7 @@ interface PostContextType {
   state: StateEnum;
   content: Partial<Content>[];
   setContent: (a: SetStateAction<Partial<Content>[]>) => void;
+  UpdateContent: (a: Partial<Content>) => void;
 }
 
 // Create context
@@ -52,11 +53,31 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     console.log(content);
-  }),
-    [content];
+  }, [content]);
+
+  const UpdateContent = (c: Partial<Content>) => {
+    setContent((prev) => {
+      if (!prev) return []; // Handle the case where prev is undefined or null.
+
+      // Find the index of the content object to update
+      const index = prev.findIndex((item) => item.id === c.id); // Assuming `id` is a unique key for each `Content`
+
+      if (index === -1) {
+        console.warn("Content to update not found");
+        return prev; // Return the original array if the item is not found
+      }
+
+      // Create a new array with the updated content
+      const newArr = [...prev];
+      newArr[index] = { ...prev[index], ...c }; // Merge existing content with the updates
+      return newArr;
+    });
+  };
 
   return (
-    <PostContext.Provider value={{ post, state, content, setContent }}>
+    <PostContext.Provider
+      value={{ post, state, content, setContent, UpdateContent }}
+    >
       {children}
     </PostContext.Provider>
   );
