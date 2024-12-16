@@ -46,8 +46,8 @@ export default function NewContent() {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {content.map((c) => (
-              <SelectItem className="lowercase" value={c}>
+            {content.map((c, index) => (
+              <SelectItem key={index} className="lowercase" value={c}>
                 {c}
               </SelectItem>
             ))}
