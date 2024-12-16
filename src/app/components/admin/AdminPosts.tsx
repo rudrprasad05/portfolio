@@ -22,7 +22,7 @@ export default function AdminPosts({
         </div>
       )}
       {posts.map((p) => (
-        <PostCard post={p} />
+        <PostCard key={p.id} post={p} />
       ))}
     </div>
   );

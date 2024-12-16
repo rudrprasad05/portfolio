@@ -13,7 +13,7 @@ interface User {
   name: string;
   hashedPassword: string;
   createdAt: Date;
-  type: any;
+  type: string;
 }
 
 interface Session {

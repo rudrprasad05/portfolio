@@ -28,8 +28,8 @@ export default function ContentController() {
 
   return (
     <>
-      {content.map((c) => (
-        <div>
+      {content.map((c, index) => (
+        <div key={index}>
           <div className="flex justify-between items-center">
             <div className="px-1 py-[1px] w-min h-full bg-secondary-foreground/40 text-secondary-foreground text-xs rounded-t">
               {switchType(c.type || ContentType.CODE)}

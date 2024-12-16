@@ -28,7 +28,7 @@ export default function NewContent() {
       toast.error("select a content type first");
       return;
     }
-    let c: Partial<Content> = {
+    const c: Partial<Content> = {
       createdAt: new Date(),
       data: "",
       type: contentType,
