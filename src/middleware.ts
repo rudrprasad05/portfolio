@@ -6,13 +6,11 @@ import { toast } from "sonner";
 
 export async function middleware(req: NextRequest) {
   const cookieStore = cookies();
-  const url = req.nextUrl.clone();
-
-  url.pathname = "/auth/login";
-
   const token = cookieStore.get("token")?.value;
   if (!token) {
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(
+      new URL(`/auth/login?redirect=${req.url}`, req.url)
+    );
   }
 
   // Validate token via backend
@@ -24,7 +22,7 @@ export async function middleware(req: NextRequest) {
   });
 
   if (isValid.status == 403) {
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(req.url);
   }
 
   return NextResponse.next();

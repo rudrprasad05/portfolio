@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Cookies from "js-cookie";
 import { toast } from "sonner";
 import { API_URL } from "@/const";
@@ -44,6 +44,8 @@ export const SessionProvider = ({
   children: React.ReactNode;
 }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirect");
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -91,7 +93,7 @@ export const SessionProvider = ({
         toast.success("Successfully Registered");
         setSession({ user: result.user, isLoggedIn: true });
         Cookies.set("token", result.token, { expires: 1 });
-        router.push("/admin");
+        router.replace(redirect || "/admin");
       } else {
         const error = await response.json();
         console.error("Register failed:", error);
@@ -116,7 +118,7 @@ export const SessionProvider = ({
         toast.success("Successfully Logged in");
         setSession({ user: result.user, isLoggedIn: true });
         Cookies.set("token", result.token, { expires: 1 });
-        router.push("/admin");
+        router.replace(redirect || "/admin");
       } else {
         const error = await response.json();
         console.error("Login failed:", error);
