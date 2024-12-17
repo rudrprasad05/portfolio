@@ -8,14 +8,17 @@ import P from "./P";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { CreateManyContent } from "@/actions/content";
+import { toast } from "sonner";
 
 export default function ContentController() {
   const { content, RemoveOneElement, post } = usePost();
 
   const handleClick = async () => {
-    const res = await CreateManyContent(content, post?.id || 1);
-    console.log(res);
-    console.log(content);
+    const res = await CreateManyContent(content, post?.id || 1)
+      .then((r) => {
+        toast.success("Content Updated");
+      })
+      .catch((e) => toast.error("Update failed"));
   };
 
   const switchType = (c: ContentType) => {

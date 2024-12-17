@@ -17,11 +17,9 @@ export const GetAllPosts = async () => {
   }
 };
 
-export const GetOnePostWithAllRelatedTables = async (
-  id: string
-): Promise<FullPost | undefined> => {
+export const GetOnePostWithAllRelatedTables = async (id: string) => {
   try {
-    const res = await fetch(`${API_URL}/posts`); // Assuming the endpoint for posts is "/posts"
+    const res = await fetch(`${API_URL}/posts?id=${id}`); // Assuming the endpoint for posts is "/posts"
 
     if (!res.ok) {
       throw new Error("Failed to fetch posts");
@@ -32,6 +30,27 @@ export const GetOnePostWithAllRelatedTables = async (
   } catch (error) {
     console.error("Error fetching posts:", error);
     return undefined;
+  }
+};
+
+export const ChangePostTitle = async (title: string) => {
+  try {
+    const res = await fetch(`${API_URL}/posts/change-title`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+
+    const data: { title: string } = await res.json();
+
+    return data.title;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return "undefined";
   }
 };
 
