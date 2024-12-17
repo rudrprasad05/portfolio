@@ -22,7 +22,7 @@ export async function middleware(req: NextRequest) {
   });
 
   if (isValid.status == 403) {
-    return NextResponse.redirect(req.url);
+    return NextResponse.redirect(req.nextUrl.origin + "/error/403");
   }
 
   return NextResponse.next();

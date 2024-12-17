@@ -2,16 +2,19 @@
 
 import { usePost } from "@/hooks/usePostContext";
 import { Content, ContentType } from "@/types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import H1 from "./H1";
 import P from "./P";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { CreateManyContent } from "@/actions/content";
 
 export default function ContentController() {
-  const { content } = usePost();
+  const { content, RemoveOneElement, post } = usePost();
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    const res = await CreateManyContent(content, post?.id || 1);
+    console.log(res);
     console.log(content);
   };
 
@@ -34,7 +37,10 @@ export default function ContentController() {
             <div className="px-1 py-[1px] w-min h-full bg-secondary-foreground/40 text-secondary-foreground text-xs rounded-t">
               {switchType(c.type || ContentType.CODE)}
             </div>
-            <div className=" h-full px-1 py-[1px] w-min bg-secondary-foreground/40 text-secondary-foreground  text-xs rounded-t">
+            <div
+              onClick={() => RemoveOneElement(c)}
+              className=" h-full px-1 py-[1px] w-min bg-secondary-foreground/40 text-secondary-foreground  text-xs rounded-t"
+            >
               <X className="w-3 h-3" />
             </div>
           </div>
@@ -50,11 +56,19 @@ export default function ContentController() {
 }
 
 const HandleState = ({ c }: { c: Partial<Content> }) => {
+  const { UpdateContent } = usePost();
+  const [data, setData] = useState(c.data || "");
+
+  const HandleChange = (e: string) => {
+    c.data = e;
+    UpdateContent(c);
+  };
+
   switch (c.type) {
     case ContentType.H1:
-      return <H1 val={c} />;
+      return <H1 handleChange={HandleChange} val={c} />;
     case ContentType.P:
-      return <P val={c.data} />;
+      return <P handleChange={HandleChange} val={c} />;
 
     default:
       return <div>controller</div>;

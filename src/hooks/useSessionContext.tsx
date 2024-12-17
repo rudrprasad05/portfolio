@@ -73,7 +73,7 @@ export const SessionProvider = ({
   const logout = () => {
     Cookies.remove("token");
     setSession(null);
-    router.replace("/auth/login");
+    router.replace("/");
   };
 
   const register = async (data: {

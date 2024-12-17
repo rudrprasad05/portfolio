@@ -25,6 +25,7 @@ interface PostContextType {
   content: Partial<Content>[];
   setContent: (a: SetStateAction<Partial<Content>[]>) => void;
   UpdateContent: (a: Partial<Content>) => void;
+  RemoveOneElement: (a: Partial<Content>) => void;
 }
 
 // Create context
@@ -52,7 +53,7 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    console.log(content);
+    console.log("postcontext", content);
   }, [content]);
 
   const UpdateContent = (c: Partial<Content>) => {
@@ -74,9 +75,26 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
+  const RemoveOneElement = (c: Partial<Content>) => {
+    console.log("first");
+    setContent((prev) => {
+      console.log(prev);
+      if (!prev) return [];
+      const newArr = prev.filter((item) => item !== c);
+      return newArr;
+    });
+  };
+
   return (
     <PostContext.Provider
-      value={{ post, state, content, setContent, UpdateContent }}
+      value={{
+        post,
+        state,
+        content,
+        setContent,
+        UpdateContent,
+        RemoveOneElement,
+      }}
     >
       {children}
     </PostContext.Provider>

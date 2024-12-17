@@ -5,22 +5,23 @@ import { usePost } from "@/hooks/usePostContext";
 import { Content } from "@/types";
 import React, { useState } from "react";
 
-export default function H1({ val }: { val: Partial<Content> }) {
-  const { UpdateContent } = usePost();
+export default function H1({
+  val,
+  handleChange,
+}: {
+  val: Partial<Content>;
+  handleChange: (e: string) => void;
+}) {
   const [data, setData] = useState(val.data || "");
-
-  const handleChange = (e: string) => {
-    setData(e);
-    val.data = e;
-    UpdateContent(val);
-  };
 
   return (
     <Input
       placeholder="Enter content"
       value={data}
-      onChange={(e) => handleChange(e.target.value)}
-      className="text-6xl"
+      onChange={(e) => {
+        handleChange(e.target.value);
+        setData(e.target.value);
+      }}
     />
   );
 }
