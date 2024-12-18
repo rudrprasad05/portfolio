@@ -13,11 +13,12 @@ import { useParams, useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { toast } from "sonner";
 import { API_URL } from "@/const";
-import { Content, FullPost } from "@/types";
+import { Category, Content, FullPost } from "@/types";
 import {
   ChangePostTitle,
   GetOnePostWithAllRelatedTables,
 } from "@/actions/posts";
+import { GetAllCategory } from "@/actions/category";
 
 type StateEnum = "LOADING" | "UPLOADING" | "ERROR" | "IDLE";
 
@@ -26,6 +27,7 @@ interface PostContextType {
   post: FullPost | undefined;
   state: StateEnum;
   content: Partial<Content>[];
+  allCategories: Category[];
   setContent: (a: SetStateAction<Partial<Content>[]>) => void;
   UpdateContent: (a: Partial<Content>) => void;
   RemoveOneElement: (a: Partial<Content>) => void;
@@ -40,6 +42,7 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const params = useParams();
   const [post, setPost] = useState<FullPost>();
+  const [allCategories, setAllCategories] = useState<Category[]>([]);
   const [content, setContent] = useState<Partial<Content>[]>(
     post?.content || []
   );
@@ -50,7 +53,9 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
       const res: FullPost | undefined = await GetOnePostWithAllRelatedTables(
         params?.id as string
       );
+      const cat: Category[] = await GetAllCategory();
       setPost(res);
+      setAllCategories(cat);
       if (res) setContent(res?.content);
       setState("IDLE");
     };
@@ -117,6 +122,7 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     <PostContext.Provider
       value={{
         post,
+        allCategories,
         state,
         content,
         setContent,

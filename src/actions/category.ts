@@ -11,7 +11,6 @@ export const GetAllCategory = async () => {
       throw new Error("Failed to fetch posts");
     }
     const data: { message: string; category: Category[] } = await res.json();
-    console.log(data);
 
     return data.category;
   } catch (error) {
