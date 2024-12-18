@@ -57,7 +57,7 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     fetch();
   }, [params]);
 
-  const fetch = async () => {
+  const FetchPost = async () => {
     const res: FullPost | undefined = await GetOnePostWithAllRelatedTables(
       params?.id as string
     );
