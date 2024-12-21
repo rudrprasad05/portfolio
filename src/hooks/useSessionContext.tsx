@@ -121,6 +121,7 @@ export const SessionProvider = ({
         router.replace(redirect || "/admin");
       } else {
         const error = await response.json();
+        console.log(error);
         console.error("Login failed:", error);
         toast.error("Login failed");
       }

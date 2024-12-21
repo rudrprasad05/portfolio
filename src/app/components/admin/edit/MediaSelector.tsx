@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -37,10 +37,14 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { NewCategory } from "@/actions/category";
 import { useRouter } from "next/navigation";
+import { Media } from "@/types";
+import { GetAllMedia } from "@/actions/media";
 
 export default function MediaSelector() {
   const [open, setOpen] = useState(false);
-  const [state, setState] = useState<"LOADING" | "IDLE">("IDLE");
+  const [state, setState] = useState<"LOADING" | "IDLE">("LOADING");
+  const [selectedMedia, setSelectedMedia] = useState(undefined);
+  const [media, setMedia] = useState<Media[]>([]);
   const router = useRouter();
 
   const onSubmit = async () => {
@@ -57,6 +61,16 @@ export default function MediaSelector() {
     }
   };
 
+  useEffect(() => {
+    const fetch = async () => {
+      const res = await GetAllMedia();
+      setMedia(res);
+      console.log(res);
+      setState("IDLE");
+    };
+    fetch();
+  }, [open]);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -71,37 +85,33 @@ export default function MediaSelector() {
           <p>New</p>
         </div>
       </DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
+      <DialogContent className="min-w-[720px] h-[520px] flex flex-col">
+        <div>
           <DialogTitle>Media</DialogTitle>
           <DialogDescription>Select or create new media</DialogDescription>
-        </DialogHeader>
-        <div>
-          <Tabs defaultValue="Select" className="w-full">
+        </div>
+
+        <div className="flex-1 pb-10">
+          <Tabs defaultValue="Select" className="w-full h-full">
             <TabsList className="grid w-full grid-cols-2">
               <TabsTrigger value="Select">Select</TabsTrigger>
               <TabsTrigger value="Create">Create</TabsTrigger>
             </TabsList>
-            <TabsContent value="Select">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Select</CardTitle>
-                  <CardDescription>Use an existing media file</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="space-y-1">
-                    <Label htmlFor="name">Name</Label>
-                    <Input id="name" defaultValue="Pedro Duarte" />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="username">Username</Label>
-                    <Input id="username" defaultValue="@peduarte" />
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button>Save changes</Button>
-                </CardFooter>
-              </Card>
+            <TabsContent value="Select" className="h-full">
+              <div className="h-full flex flex-col pt-6 gap-4">
+                <div className="flex-1">
+                  {media && media.map((m) => <div>{m.id}</div>)}
+                  {media?.length == 0 && (
+                    <div className="grid place-items-center text-muted w-full rounded border-dashed border h-full">
+                      <div className="">No Media</div>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <Button disabled={!selectedMedia}>Save changes</Button>
+                </div>
+              </div>
             </TabsContent>
             <TabsContent value="Create">
               <Card>
