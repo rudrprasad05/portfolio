@@ -1,3 +1,4 @@
+import { SettingValues } from "@/app/components/admin/edit/Settings";
 import { API_URL } from "@/const";
 import { Category, FullPost, Post } from "@/types";
 
@@ -33,12 +34,12 @@ export const GetOnePostWithAllRelatedTables = async (id: string) => {
   }
 };
 
-export const ChangePostTitle = async (title: string) => {
+export const UpdatePost = async (id: number, postdata: SettingValues) => {
   try {
-    const res = await fetch(`${API_URL}/posts/change-title`, {
-      method: "POST",
+    const res = await fetch(`${API_URL}/post/update`, {
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title }),
+      body: JSON.stringify({ id, data: postdata }),
     });
 
     if (!res.ok) {

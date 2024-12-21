@@ -14,10 +14,7 @@ import Cookies from "js-cookie";
 import { toast } from "sonner";
 import { API_URL } from "@/const";
 import { Category, Content, FullPost } from "@/types";
-import {
-  ChangePostTitle,
-  GetOnePostWithAllRelatedTables,
-} from "@/actions/posts";
+import { GetOnePostWithAllRelatedTables } from "@/actions/posts";
 import { GetAllCategory } from "@/actions/category";
 
 type StateEnum = "LOADING" | "UPLOADING" | "ERROR" | "IDLE";
@@ -31,7 +28,6 @@ interface PostContextType {
   setContent: (a: SetStateAction<Partial<Content>[]>) => void;
   UpdateContent: (a: Partial<Content>) => void;
   RemoveOneElement: (a: Partial<Content>) => void;
-  ChangeTitle: (a: string) => Promise<void>;
 }
 
 // Create context
@@ -76,19 +72,6 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
     console.log("postcontext", content);
   }, [content, post]);
 
-  const ChangeTitle = async (title: string) => {
-    const res = await ChangePostTitle(title);
-    if (!res) {
-      toast.error("Unable to update title");
-      return;
-    }
-    setPost((prev) => {
-      if (!prev) return;
-      prev.title = res;
-      return prev;
-    });
-  };
-
   const UpdateContent = (c: Partial<Content>) => {
     setContent((prev) => {
       if (!prev) return []; // Handle the case where prev is undefined or null.
@@ -128,7 +111,6 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
         setContent,
         UpdateContent,
         RemoveOneElement,
-        ChangeTitle,
       }}
     >
       {children}

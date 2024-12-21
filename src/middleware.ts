@@ -14,15 +14,18 @@ export async function middleware(req: NextRequest) {
   }
 
   // Validate token via backend
-  const isValid = await fetch(API_URL + "/token", {
-    method: "POST",
-    headers: {
-      Authorization: `${token}`,
-    },
-  });
-
-  if (isValid.status == 403) {
-    return NextResponse.redirect(req.nextUrl.origin + "/error/403");
+  try {
+    const isValid = await fetch(API_URL + "/token", {
+      method: "POST",
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    if (isValid.status == 403) {
+      return NextResponse.redirect(req.nextUrl.origin + "/error/403");
+    }
+  } catch (error) {
+    return NextResponse.redirect(req.nextUrl.origin + "/error/500");
   }
 
   return NextResponse.next();

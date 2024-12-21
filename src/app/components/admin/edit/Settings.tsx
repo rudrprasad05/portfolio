@@ -34,16 +34,23 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "@/hooks/useSessionContext";
 import { Input } from "@/components/ui/input";
 import ImageDropzone from "./ImageDropzone";
+import { UpdatePost } from "@/actions/posts";
+import { FullPost } from "@/types";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { Label } from "@/components/ui/label";
+import MediaSelector from "./MediaSelector";
 
 const settingsSchema = z.object({
-  name: z.string().optional(),
-  featuredImageId: z.string().optional(),
-  postCategories: z.any().optional(),
+  title: z.string().optional(),
+  // featuredImageId: z.string().optional(),
+  // postCategories: z.any().optional(),
 });
 
-type SettingValues = z.infer<typeof settingsSchema>;
+export type SettingValues = z.infer<typeof settingsSchema>;
 
 export default function Settings() {
+  const router = useRouter();
   const { post, allCategories } = usePost();
   const { session } = useSession();
   const [state, setState] = useState<"LOADING" | "IDLE">("IDLE");
@@ -52,10 +59,21 @@ export default function Settings() {
   const form = useForm<SettingValues>({
     resolver: zodResolver(settingsSchema),
     defaultValues: {
-      name: post?.title || "",
+      title: post?.title || "",
     },
   });
-  const onSubmit = async () => {};
+  const onSubmit = async (data: SettingValues) => {
+    console.log("l");
+    try {
+      const res = await UpdatePost(post?.id || 0, data).then((r) => {
+        setState("IDLE");
+        router.refresh();
+        toast.success("New Tag created");
+      });
+    } catch (error) {
+      setState("IDLE");
+    }
+  };
 
   const handleImageUpload = async () => {
     // setloadingImage(true);
@@ -94,15 +112,17 @@ export default function Settings() {
       <SheetContent className="flex flex-col">
         <SheetHeader>
           <SheetTitle>Post Settings</SheetTitle>
-          <SheetDescription>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-3"
-              >
+        </SheetHeader>
+        <SheetDescription className="h-full flex-1">
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className=" h-full flex flex-col justify-between"
+            >
+              <div className="space-y-3">
                 <FormField
                   control={form.control}
-                  name="name"
+                  name="title"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Name</FormLabel>
@@ -119,7 +139,7 @@ export default function Settings() {
                     </FormItem>
                   )}
                 />
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="featuredImageId"
                   render={({ field }) => {
@@ -154,34 +174,18 @@ export default function Settings() {
                       </FormItem>
                     );
                   }}
-                />
-                <ImageDropzone setImage={setImage} />
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <div className="relative">
-                          <Input
-                            autoComplete="off"
-                            placeholder="enter name"
-                            {...field}
-                          />
-                        </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </form>
-            </Form>
-          </SheetDescription>
-        </SheetHeader>
-        <SheetFooter className="mt-auto">
-          <Button className="w-full">Save</Button>
-        </SheetFooter>
+                /> */}
+                {/* <ImageDropzone setImage={setImage} /> */}
+                <div className="flex justify-between items-center">
+                  <Label>Select Media</Label>
+                  <MediaSelector />
+                </div>
+              </div>
+
+              <Button className="w-full mt-auto">Save</Button>
+            </form>
+          </Form>
+        </SheetDescription>
       </SheetContent>
     </Sheet>
   );
