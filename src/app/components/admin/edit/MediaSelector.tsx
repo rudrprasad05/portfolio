@@ -1,65 +1,37 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { buttonVariants } from "@/components/ui/button";
-import { Loader2, Plus, Router } from "lucide-react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { useCallback, useEffect, useState } from "react";
+import { DropzoneOptions, useDropzone } from "react-dropzone";
+
 import { NewCategory } from "@/actions/category";
-import { useRouter } from "next/navigation";
-import { Media } from "@/types";
 import { GetAllMedia } from "@/actions/media";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Media } from "@/types";
+import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function MediaSelector() {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState<"LOADING" | "IDLE">("LOADING");
   const [selectedMedia, setSelectedMedia] = useState(undefined);
   const [media, setMedia] = useState<Media[]>([]);
+  const [file, setFile] = useState<File>();
+  const [imageIsUploadingToCloud, setImageIsUploadingToCloud] = useState(false);
+  const [cloudImageUrl, setCloudImageUrl] = useState<string | undefined>(
+    undefined
+  );
   const router = useRouter();
 
-  const onSubmit = async () => {
-    setState("LOADING");
-    try {
-      const res = await NewCategory("data.name").then((r) => {
-        setState("IDLE");
-        setOpen(false);
-        router.refresh();
-        toast.success("New Tag created");
-      });
-    } catch (error) {
-      setState("IDLE");
-    }
-  };
+  const onSubmit = async () => {};
 
   useEffect(() => {
     const fetch = async () => {
@@ -70,6 +42,83 @@ export default function MediaSelector() {
     };
     fetch();
   }, [open]);
+
+  const handleImageUpload = async (file: File) => {
+    const salt = Date.now();
+    setImageIsUploadingToCloud(true);
+    if (!file) return;
+
+    try {
+      let data = new FormData();
+      data.append("file", file, "image" + salt.toString());
+
+      const res = await fetch("/api/s3-upload", {
+        method: "POST",
+        body: data,
+      })
+        .then(() => {
+          setImageIsUploadingToCloud(false);
+          setCloudImageUrl(
+            `https://mctechfiji.s3.amazonaws.com/devlog/${
+              "image" + salt.toString()
+            }`
+          );
+          setImageIsUploadingToCloud(true);
+          console.log(
+            `https://mctechfiji.s3.amazonaws.com/devlog/${
+              "image" + salt.toString()
+            }`
+          );
+
+          toast.success("Image Uploaded to Cloud");
+        })
+        .catch((e) => {
+          toast("Something went wrong", { description: "Contact site admin" });
+        });
+      // handle the error
+    } catch (e: any) {
+      // Handle errors here
+      console.error(e);
+    }
+  };
+
+  const HandleDropZone = () => {
+    const onDrop = useCallback<NonNullable<DropzoneOptions["onDrop"]>>(
+      (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        setFile(file);
+        handleImageUpload(file);
+      },
+      [setFile]
+    );
+
+    // Set up dropzone with the 'onDrop' callback and accept only image files
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+      onDrop,
+      multiple: false,
+    });
+    if (file) {
+      return <>{file.name}</>;
+    }
+    if (!isDragActive) {
+      <div
+        {...getRootProps()}
+        className="grid place-items-center text-muted w-full rounded border-dashed border h-full"
+      >
+        <input {...getInputProps()} />
+        <div className="">Drag and drop an image here</div>
+      </div>;
+    }
+    return (
+      <div
+        {...getRootProps()}
+        className="grid place-items-center text-secondary-foreground w-full rounded border-dashed border h-full"
+      >
+        <input {...getInputProps()} />
+        <div className="">Drop the image</div>
+      </div>
+    );
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -113,9 +162,19 @@ export default function MediaSelector() {
                 </div>
               </div>
             </TabsContent>
-            <TabsContent value="Create">
-              <Card>
-                <CardHeader>
+            <TabsContent value="Create" className="h-full">
+              <div className="h-full flex flex-col pt-6 gap-4">
+                <div className="flex-1">
+                  <HandleDropZone />
+                </div>
+
+                <div>
+                  <Button disabled={!selectedMedia}>Save changes</Button>
+                </div>
+              </div>
+
+              {/* <Card>
+              <CardHeader>
                   <CardTitle>Create</CardTitle>
                   <CardDescription>Create a new media File</CardDescription>
                 </CardHeader>
@@ -131,8 +190,8 @@ export default function MediaSelector() {
                 </CardContent>
                 <CardFooter>
                   <Button>Save Create</Button>
-                </CardFooter>
-              </Card>
+                </CardFooter> 
+              </Card>*/}
             </TabsContent>
           </Tabs>
         </div>

@@ -139,43 +139,7 @@ export default function Settings() {
                     </FormItem>
                   )}
                 />
-                {/* <FormField
-                  control={form.control}
-                  name="featuredImageId"
-                  render={({ field }) => {
-                    return (
-                      <FormItem className="grow">
-                        <FormLabel>Category</FormLabel>
 
-                        <Select
-                          onValueChange={(value) => {
-                            const selectedId = allCategories.find(
-                              (i) => i.name === value
-                            )?.id;
-                            field.onChange(selectedId);
-                          }}
-                          defaultValue={post?.postCategories[0].category.name}
-                        >
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select a tag" />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            {allCategories?.map((i) => (
-                              <SelectItem key={i.id} value={i.name}>
-                                {i.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-
-                        <FormMessage />
-                      </FormItem>
-                    );
-                  }}
-                /> */}
-                {/* <ImageDropzone setImage={setImage} /> */}
                 <div className="flex justify-between items-center">
                   <Label>Select Media</Label>
                   <MediaSelector />
