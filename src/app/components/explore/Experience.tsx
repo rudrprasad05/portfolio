@@ -1,7 +1,7 @@
 import { ReactIconSvg } from "../svg";
 import JobsSection from "./JobsSection";
 import { JOBS_DATA } from "@/data";
-import { ETechStack, TJobData } from "@/types";
+import { TJobData } from "@/types";
 import React from "react";
 
 const Experience = () => {

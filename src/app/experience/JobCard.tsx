@@ -11,7 +11,7 @@ const JobCard = (props: TJobData) => {
 
   return (
     <div className="mb-8">
-      <div className="text-muted-foreground/90 text-sm flex justify-between items-center">
+      <div className="text-secondary-foreground/80 text-sm flex justify-between items-center">
         <div className="flex gap-2 items-center">
           <Calendar className="w-4 h-4" />
           <span>{formattedStartDate}</span>
@@ -27,19 +27,19 @@ const JobCard = (props: TJobData) => {
       <div className="flex flex-col gap-4 mt-2">
         <div className="text-2xl capitalize">{jobTitle}</div>
         <div className="">
-          <h2 className="text-primary text-xs">Description</h2>
-          <p className="text-muted-foreground/90 text-justify text-sm">
+          <h2 className="text-muted-foreground/70 text-xs">Description</h2>
+          <p className="text-secondary-foreground/80 text-justify text-sm">
             {describtion}
           </p>
         </div>
         <div>
-          <h2 className="text-primary text-xs">Location</h2>
-          <p className="text-muted-foreground/90 text-justify text-sm">
+          <h2 className="text-muted-foreground/70 text-xs">Location</h2>
+          <p className="text-secondary-foreground/80 text-justify text-sm">
             {location}
           </p>
         </div>
         <div className="">
-          <h2 className="text-primary text-xs">Tech Stack</h2>
+          <h2 className="text-muted-foreground/70 text-xs">Tech Stack</h2>
           <div className="flex gap-2 mt-2">
             {tech.map((t, i) => (
               <div

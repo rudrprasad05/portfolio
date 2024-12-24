@@ -27,6 +27,20 @@ const ProjectCard = (props: IProjectData) => {
         </div>
 
         <div className="mt-6 text-muted-foreground/70">{props.desc}</div>
+        <div className="flex gap-2 items-center mt-4">
+          {props.tech.map((t, i) => (
+            <div
+              key={i}
+              className="transition w-8 h-8 overflow-hidden  flex gap-2 items-center"
+            >
+              <div className="transition w-8 h-8">
+                {React.cloneElement(t.icon, {
+                  className: "w-8 h-8",
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

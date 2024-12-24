@@ -1,12 +1,5 @@
 import { SVGProps } from "react";
 
-export enum ETechStack {
-  REACT = "React",
-  NODE = "NodeJs",
-  AWS = "AWS",
-  GIT = "Git",
-}
-
 export type TTeckStack = {
   icon: React.ReactElement;
   name: string;
@@ -19,7 +12,6 @@ export type TJobData = {
   startDate: string;
   endDate: string;
   jobTitle: string;
-  techUsed: ETechStack[];
   describtion: string;
   tech: TechStackType[];
 };

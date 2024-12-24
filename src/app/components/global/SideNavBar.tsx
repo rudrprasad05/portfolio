@@ -30,10 +30,21 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useSession } from "@/hooks/useSessionContext";
 
-const groups = [
+type GroupItemType = {
+  title: string;
+  icon: ReactNode;
+  slug: string;
+  disabled?: boolean;
+};
+type GroupType = {
+  groupName: string | null;
+  items: GroupItemType[];
+};
+
+const groups: GroupType[] = [
   {
     groupName: null,
     items: [
@@ -71,6 +82,7 @@ const groups = [
         title: "Devlog",
         icon: <Code />,
         slug: "/devlog",
+        disabled: true,
       },
       {
         title: "Reads",
@@ -130,14 +142,14 @@ export function SideNavBar() {
         </div>
       </SidebarHeader>
       <SidebarContent className="p-2">
-        {groups.map((g) => (
+        {groups.map((g: GroupType) => (
           <SidebarGroup key={g.groupName}>
             {g.groupName && (
               <SidebarGroupLabel className="">{g.groupName}</SidebarGroupLabel>
             )}
             <SidebarGroupContent>
               <SidebarMenu>
-                {g.items.map((project) => (
+                {g.items.map((project: GroupItemType) => (
                   <SidebarMenuItem
                     className={clsx(
                       `rounded-md`,
@@ -145,8 +157,14 @@ export function SideNavBar() {
                     )}
                     key={project.title}
                   >
-                    <SidebarMenuButton asChild>
-                      <Link className="text-lg" href={project.slug}>
+                    <SidebarMenuButton
+                      disabled={project.disabled ? true : false}
+                      asChild
+                    >
+                      <Link
+                        className="text-lg"
+                        href={project.disabled ? "#" : project.slug}
+                      >
                         {project.icon}
                         <span>{project.title}</span>
                       </Link>

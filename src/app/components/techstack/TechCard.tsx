@@ -8,7 +8,7 @@ const TechCard = (props: TTeckStack) => {
       <CardContent className="flex flex-row items-center p-4 gap-3">
         <div className="w-8 h-8">
           {React.cloneElement(props.icon, {
-            className: "w-full h-full",
+            className: "w-8 h-8",
           })}
         </div>
         <div>

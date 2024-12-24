@@ -11,14 +11,24 @@ import { useCallback, useEffect, useState } from "react";
 import { DropzoneOptions, useDropzone } from "react-dropzone";
 
 import { NewCategory } from "@/actions/category";
-import { GetAllMedia } from "@/actions/media";
+import { GetAllMedia, SaveMedia } from "@/actions/media";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Media } from "@/types";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
 export default function MediaSelector() {
   const [open, setOpen] = useState(false);
   const [state, setState] = useState<"LOADING" | "IDLE">("LOADING");
@@ -45,6 +55,7 @@ export default function MediaSelector() {
 
   const handleImageUpload = async (file: File) => {
     const salt = Date.now();
+    console.log(file);
     setImageIsUploadingToCloud(true);
     if (!file) return;
 
@@ -63,7 +74,6 @@ export default function MediaSelector() {
               "image" + salt.toString()
             }`
           );
-          setImageIsUploadingToCloud(true);
           console.log(
             `https://mctechfiji.s3.amazonaws.com/devlog/${
               "image" + salt.toString()
@@ -80,6 +90,12 @@ export default function MediaSelector() {
       // Handle errors here
       console.error(e);
     }
+  };
+
+  const saveNewMedia = async () => {
+    if (!cloudImageUrl) return;
+    const media = await SaveMedia(cloudImageUrl);
+    console.log(media);
   };
 
   const HandleDropZone = () => {
@@ -163,35 +179,48 @@ export default function MediaSelector() {
               </div>
             </TabsContent>
             <TabsContent value="Create" className="h-full">
-              <div className="h-full flex flex-col pt-6 gap-4">
-                <div className="flex-1">
-                  <HandleDropZone />
-                </div>
-
-                <div>
-                  <Button disabled={!selectedMedia}>Save changes</Button>
-                </div>
-              </div>
-
-              {/* <Card>
-              <CardHeader>
-                  <CardTitle>Create</CardTitle>
-                  <CardDescription>Create a new media File</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="space-y-1">
-                    <Label htmlFor="current">Current Create</Label>
-                    <Input id="current" type="Create" />
+              {!file && (
+                <div className="h-full flex flex-col pt-6 gap-4">
+                  <div className="flex-1">
+                    <HandleDropZone />
                   </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="new">New Create</Label>
-                    <Input id="new" type="Create" />
+
+                  <div>
+                    <Button disabled={!selectedMedia}>Save changes</Button>
                   </div>
-                </CardContent>
-                <CardFooter>
-                  <Button>Save Create</Button>
-                </CardFooter> 
-              </Card>*/}
+                </div>
+              )}
+              {file && (
+                <div className="w-full h-full grid grid-cols-2 p-6 gap-4">
+                  <div className="w-full h-full overflow-clip">
+                    {imageIsUploadingToCloud && (
+                      <Skeleton className="w-full h-full" />
+                    )}
+                    {!imageIsUploadingToCloud && (
+                      <img
+                        className="w-full h-full object-cover"
+                        src={cloudImageUrl}
+                      />
+                    )}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <Input
+                      disabled
+                      placeholder="size"
+                      value={(file.size / Math.pow(2, 20)).toFixed(2) + "MB"}
+                    />
+                    <Input disabled placeholder="src" value={cloudImageUrl} />
+                  </div>
+                  <div>
+                    <Button
+                      onClick={() => saveNewMedia()}
+                      disabled={!imageIsUploadingToCloud}
+                    >
+                      Save changes
+                    </Button>
+                  </div>
+                </div>
+              )}
             </TabsContent>
           </Tabs>
         </div>

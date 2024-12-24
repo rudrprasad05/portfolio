@@ -17,3 +17,30 @@ export const GetAllMedia = async () => {
     return [];
   }
 };
+
+export const SaveMedia = async (src: string) => {
+  console.log("hit");
+  try {
+    const res = await fetch(`${API_URL}/media/new`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ src }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch posts");
+    }
+
+    const data: { media: Media } = await res.json();
+    console.log(data);
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return { media: undefined };
+  }
+};
+
+export const LinkMediaPost = async (id: string) => {
+  return;
+};
