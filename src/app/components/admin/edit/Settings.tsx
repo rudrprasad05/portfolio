@@ -98,7 +98,7 @@ export default function Settings() {
           console.log(e);
         });
       // handle the error
-    } catch (e: any) {
+    } catch (e) {
       // Handle errors here
       console.error(e);
     }

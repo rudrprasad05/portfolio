@@ -60,7 +60,7 @@ export default function MediaSelector() {
     if (!file) return;
 
     try {
-      let data = new FormData();
+      const data = new FormData();
       data.append("file", file, "image" + salt.toString());
 
       const res = await fetch("/api/s3-upload", {
@@ -86,7 +86,7 @@ export default function MediaSelector() {
           toast("Something went wrong", { description: "Contact site admin" });
         });
       // handle the error
-    } catch (e: any) {
+    } catch (e) {
       // Handle errors here
       console.error(e);
     }
@@ -165,7 +165,8 @@ export default function MediaSelector() {
             <TabsContent value="Select" className="h-full">
               <div className="h-full flex flex-col pt-6 gap-4">
                 <div className="flex-1">
-                  {media && media.map((m) => <div>{m.id}</div>)}
+                  {media &&
+                    media.map((m, index) => <div key={index}>{m.id}</div>)}
                   {media?.length == 0 && (
                     <div className="grid place-items-center text-muted w-full rounded border-dashed border h-full">
                       <div className="">No Media</div>

@@ -1,5 +1,5 @@
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { NextRequest, NextResponse } from "next/server";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
   region: process.env.AWS_S3_REGION ?? "",
@@ -9,7 +9,7 @@ const s3Client = new S3Client({
   },
 });
 
-async function uploadFileToS3(file: any, fileName: string) {
+async function uploadFileToS3(file: Buffer<ArrayBufferLike>, fileName: string) {
   const fileBuffer = file;
 
   const params = {
