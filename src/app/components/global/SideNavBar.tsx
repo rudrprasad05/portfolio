@@ -32,6 +32,7 @@ import clsx from "clsx";
 import { Button } from "@/components/ui/button";
 import { ReactNode, useEffect } from "react";
 import { useSession } from "@/hooks/useSessionContext";
+import { cn } from "@/lib/utils";
 
 type GroupItemType = {
   title: string;
@@ -157,12 +158,15 @@ export function SideNavBar() {
                     )}
                     key={project.title}
                   >
-                    <SidebarMenuButton
-                      disabled={project.disabled ? true : false}
-                      asChild
-                    >
+                    <SidebarMenuButton asChild>
                       <Link
-                        className="text-lg"
+                        target={g.groupName == "Socials" ? "_blank" : undefined}
+                        className={cn(
+                          "text-lg",
+                          project.disabled
+                            ? "cursor-not-allowed"
+                            : "cursor-pointer"
+                        )}
                         href={project.disabled ? "#" : project.slug}
                       >
                         {project.icon}

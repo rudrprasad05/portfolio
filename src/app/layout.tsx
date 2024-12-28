@@ -1,6 +1,7 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { Roboto } from "next/font/google";
+import { SessionProvider } from "@/hooks/useSessionContext";
+// import { Roboto } from "next/font/google";
 import Head from "next/head";
 
 import LayoutContainer from "./components/global/LayoutContainer";
@@ -9,14 +10,14 @@ import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
 
 import "./globals.css";
-import { SessionProvider } from "@/hooks/useSessionContext";
+import "./font.css";
 
-const roboto = Roboto({
-  weight: ["400", "900"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-  display: "swap",
-});
+// const roboto = Roboto({
+//   weight: ["400", "900"],
+//   subsets: ["latin"],
+//   variable: "--font-roboto",
+//   display: "swap",
+// });
 
 // const roboto_mono = Roboto_Mono({
 //   weight: "400",
@@ -36,7 +37,7 @@ export default function RootLayout({
         <title>Rudr Prasad</title>
       </head>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <body className={`${roboto.className} flex items-center`}>
+        <body className={`flex items-center`}>
           <SessionProvider>
             <SidebarProvider className="">
               <SideNavBar />

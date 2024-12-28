@@ -144,7 +144,7 @@ export const PROJECT_DATA: IProjectData[] = [
     github: "https://github.com/rudrprasad05/docker-manager",
     desc: "Interact with a GoLang backend to manage docker images and containers on your cloud computer. Made for those who hate the CLI",
     img: "https://mctechfiji.s3.us-east-1.amazonaws.com/devlog/devlog2.png",
-    tech: [NextjsTech, GoTech, DockerTech],
+    tech: [ReactTech, GoTech, DockerTech],
   },
   {
     name: "Image Convertor",
