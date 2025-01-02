@@ -1,7 +1,7 @@
-import AdminPosts from "../components/admin/AdminPosts";
-import AdminTags from "../components/admin/AdminTags";
-import FullWidthContainer from "../components/global/FullWidthContainer";
-import PaddedContainer from "../components/global/PaddedContainer";
+import AdminPosts from "@/components/admin/AdminPosts";
+import AdminTags from "@/components/admin/AdminTags";
+import FullWidthContainer from "@/components/global/FullWidthContainer";
+import PaddedContainer from "@/components/global/PaddedContainer";
 import { GetAllCategory } from "@/actions/category";
 import { GetAllPosts } from "@/actions/posts";
 import React from "react";

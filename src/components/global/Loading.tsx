@@ -1,8 +1,8 @@
+import LayoutContainer from "@/components/global/LayoutContainer";
 import { Loader2 } from "lucide-react";
 import React from "react";
-import LayoutContainer from "./components/global/LayoutContainer";
 
-export default function loading() {
+export default function Loading() {
   return (
     <LayoutContainer>
       <div className="flex flex-col gap-2 grow my-auto justify-center items-center">

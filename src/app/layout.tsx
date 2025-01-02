@@ -1,30 +1,12 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "@/hooks/useSessionContext";
-// import { Roboto } from "next/font/google";
-import Head from "next/head";
-
-import LayoutContainer from "./components/global/LayoutContainer";
-import { SideNavBar } from "./components/global/SideNavBar";
-import { ThemeProvider } from "./theme/ThemeProvider";
 import ThemeSwitcherOneClick from "./theme/ThemeSwitcherOneClick";
-
 import "./globals.css";
 import "./font.css";
-
-// const roboto = Roboto({
-//   weight: ["400", "900"],
-//   subsets: ["latin"],
-//   variable: "--font-roboto",
-//   display: "swap",
-// });
-
-// const roboto_mono = Roboto_Mono({
-//   weight: "400",
-//   subsets: ["latin"],
-//   variable: "--font-roboto-mono",
-//   display: "swap",
-// });
+import LayoutContainer from "@/components/global/LayoutContainer";
+import { SideNavBar } from "@/components/global/SideNavBar";
+import { ThemeProvider } from "next-themes";
 
 export default function RootLayout({
   children,

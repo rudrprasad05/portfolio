@@ -1,7 +1,7 @@
+import FullWidthContainer from "@/components/global/FullWidthContainer";
+import LayoutContainer from "@/components/global/LayoutContainer";
+import PaddedContainer from "@/components/global/PaddedContainer";
 import React from "react";
-import LayoutContainer from "./components/global/LayoutContainer";
-import FullWidthContainer from "./components/global/FullWidthContainer";
-import PaddedContainer from "./components/global/PaddedContainer";
 
 function NotFoundPage() {
   return (

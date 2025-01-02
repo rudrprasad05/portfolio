@@ -83,12 +83,12 @@ const groups: GroupType[] = [
         title: "Devlog",
         icon: <Code />,
         slug: "/devlog",
-        disabled: true,
       },
       {
         title: "Reads",
         icon: <Book />,
         slug: "/reads",
+        disabled: true,
       },
       {
         title: "Tech Stack",

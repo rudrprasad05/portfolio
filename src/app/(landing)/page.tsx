@@ -1,8 +1,8 @@
-import Experience from "./components/explore/Experience";
-import Header from "./components/explore/Header";
-import PaddedContainer from "./components/global/PaddedContainer";
-import Projects from "./components/projects/Projects";
-import TechStack from "./components/techstack/Tech";
+import Experience from "@/components/explore/Experience";
+import Header from "@/components/explore/Header";
+import PaddedContainer from "@/components/global/PaddedContainer";
+import Projects from "@/components/projects/Projects";
+import TechStack from "@/components/techstack/Tech";
 
 async function fetchData() {
   // Simulate a delay (API call)

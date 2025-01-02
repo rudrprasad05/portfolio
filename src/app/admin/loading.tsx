@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
-import PaddedContainer from "../components/global/PaddedContainer";
+import PaddedContainer from "@/components/global/PaddedContainer";
 
 export default function Loading() {
   return (

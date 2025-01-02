@@ -1,4 +1,4 @@
-import { SettingValues } from "@/app/components/admin/edit/Settings";
+import { SettingValues } from "@/components/admin/edit/Settings";
 import { API_URL } from "@/const";
 import { Category, FullPost, Post } from "@/types";
 
@@ -74,22 +74,6 @@ export const NewPost = async (
     const data: { message: string; post: Category[] } = await res.json();
 
     return data.post;
-  } catch (error) {
-    console.error("Error fetching posts:", error);
-    return [];
-  }
-};
-
-export const PING = async () => {
-  try {
-    const res = await fetch(`${API_URL}/ping`); // Assuming the endpoint for posts is "/posts"
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch posts");
-    }
-
-    const data: Post[] = await res.json();
-    return data;
   } catch (error) {
     console.error("Error fetching posts:", error);
     return [];

@@ -1,18 +1,20 @@
 import {
   AmazonWebServicesIconSvg,
+  AspDotNetCoreIconSvg,
   AstroIconSvg,
   CIconSvg,
   DockerIconSvg,
   GitIconSvg,
   GoIconSvg,
   MicrosoftAzureIconSvg,
+  MySQLIconSvg,
   NextjsIconSvg,
   NodejsIconSvg,
   PostmanIconSvg,
   ReactIconSvg,
   SpringIconSvg,
   WordPressIconSvg,
-} from "@/app/components/svg";
+} from "@/components/svg";
 import { IProjectData, TechStackType, TJobData } from "@/types";
 import React, { SVGProps } from "react";
 
@@ -20,6 +22,11 @@ export const ReactTech: TechStackType = {
   icon: <ReactIconSvg className="w-full" />,
   name: "React",
   desc: "A flexible JavaScript library by Meta for building dynamic, interactive user interfaces efficiently",
+};
+export const MySQLTech: TechStackType = {
+  icon: <MySQLIconSvg className="w-full" />,
+  name: "MySQL",
+  desc: "A fast and efficient database used by millions of software teams around the world. Robust, error-proof and easy to learn",
 };
 export const AstroTech: TechStackType = {
   icon: <AstroIconSvg className="w-full" />,
@@ -38,7 +45,12 @@ export const DockerTech: TechStackType = {
 };
 export const CSharpTech: TechStackType = {
   icon: <CIconSvg className="w-full" />,
-  name: "ASP.NET C#",
+  name: "c#",
+  desc: " A cross-platform, high-performance framework for building modern, cloud-based, and internet-connected applications",
+};
+export const AspDotNetCoreTech: TechStackType = {
+  icon: <AspDotNetCoreIconSvg className="w-full" />,
+  name: "ASP.NET",
   desc: " A cross-platform, high-performance framework for building modern, cloud-based, and internet-connected applications",
 };
 export const AWSTech: TechStackType = {
@@ -70,7 +82,7 @@ export const WordPressTech: TechStackType = {
 };
 export const MicrosoftAzureTech: TechStackType = {
   icon: <MicrosoftAzureIconSvg className="w-full" />,
-  name: "MicrosoftAzure",
+  name: "Azure",
   desc: "A lightweight, portable, and scalable solution for deploying Node.js applications in consistent environments across platforms",
 };
 export const GitTech: TechStackType = {
@@ -88,6 +100,7 @@ export const TECH_STACK: TechStackType[] = [
   GitTech,
   AWSTech,
   CSharpTech,
+  MySQLTech,
   NextjsTech,
   DockerTech,
   SpringTech,
@@ -105,7 +118,7 @@ export const JOBS_DATA: TJobData[] = [
     location: "Samabula, Suva, Fiji",
     describtion:
       "During my time as a freelance developer at Procyon Web Development, I sharpened my skills as a web developer by designing and implementing innovative tools and software solutions tailored for the web",
-    tech: [NextjsTech, AstroTech],
+    tech: [NextjsTech, AstroTech, MySQLTech],
   },
   {
     startDate: "24 June 2024",
@@ -115,7 +128,7 @@ export const JOBS_DATA: TJobData[] = [
     jobTitle: "Web Developer",
     describtion:
       "During my time as a web developer and IT technician at EzyTech, I honed my skills by creating and maintaining WordPress websites, developing tailored web solutions, and providing technical support to ensure seamless IT operations",
-    tech: [WordPressTech],
+    tech: [WordPressTech, MySQLTech],
   },
   {
     startDate: "18 November 2024",
@@ -125,7 +138,14 @@ export const JOBS_DATA: TJobData[] = [
     jobTitle: "Software Developer",
     describtion:
       "During my tenure at Innovate Digital Fiji, I enhanced my expertise by developing web applications using ASP.NET C#, Azure, and React/Next.js, delivering scalable and modern solutions tailored to client needs",
-    tech: [NextjsTech, MicrosoftAzureTech, GitTech, PostmanTech],
+    tech: [
+      NextjsTech,
+      AspDotNetCoreTech,
+      MySQLTech,
+      MicrosoftAzureTech,
+      GitTech,
+      PostmanTech,
+    ],
   },
 ];
 
