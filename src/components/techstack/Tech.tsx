@@ -1,6 +1,5 @@
-import { ReactIconSvg, SpringIconSvg } from "../svg";
-import TechCard from "./TechCard";
 import { TECH_STACK } from "@/data";
+import TechCard from "./TechCard";
 
 const TechStack = () => {
   return (

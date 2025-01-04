@@ -1,5 +1,5 @@
-import PaddedContainer from "@/app/components/global/PaddedContainer";
 import React from "react";
+import PaddedContainer from "./PaddedContainer";
 
 export default function UnderConstruction() {
   return (

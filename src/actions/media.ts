@@ -1,6 +1,5 @@
-import { SettingValues } from "@/app/components/admin/edit/Settings";
 import { API_URL } from "@/const";
-import { Category, FullPost, Media, Post } from "@/types";
+import { Media } from "@/types";
 
 export const GetAllMedia = async () => {
   try {

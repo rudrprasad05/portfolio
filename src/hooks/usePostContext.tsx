@@ -1,21 +1,16 @@
 "use client";
 
+import { GetAllCategory } from "@/actions/category";
+import { GetOnePostWithAllRelatedTables } from "@/actions/posts";
+import { Category, Content, FullPost } from "@/types";
+import { useParams, useRouter } from "next/navigation";
 import {
   createContext,
-  useContext,
-  useState,
-  useEffect,
   SetStateAction,
-  Dispatch,
-  useLayoutEffect,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
-import { useParams, useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import { toast } from "sonner";
-import { API_URL } from "@/const";
-import { Category, Content, FullPost } from "@/types";
-import { GetOnePostWithAllRelatedTables } from "@/actions/posts";
-import { GetAllCategory } from "@/actions/category";
 
 type StateEnum = "LOADING" | "UPLOADING" | "ERROR" | "IDLE";
 

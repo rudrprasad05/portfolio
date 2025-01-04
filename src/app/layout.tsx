@@ -1,3 +1,5 @@
+"use client";
+
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "@/hooks/useSessionContext";
@@ -7,6 +9,8 @@ import "./font.css";
 import LayoutContainer from "@/components/global/LayoutContainer";
 import { SideNavBar } from "@/components/global/SideNavBar";
 import { ThemeProvider } from "next-themes";
+import { Suspense } from "react";
+import { Loader2 } from "lucide-react";
 
 export default function RootLayout({
   children,
@@ -20,18 +24,29 @@ export default function RootLayout({
       </head>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <body className={`flex items-center`}>
-          <SessionProvider>
-            <SidebarProvider className="">
-              <SideNavBar />
-              <Toaster />
+          <Suspense
+            fallback={
               <LayoutContainer>
-                <SidebarTrigger />
-                {/* <Analytics /> */}
-                <ThemeSwitcherOneClick seeName={false} />
-                {children}
+                <div className="flex flex-col gap-2 grow my-auto justify-center items-center">
+                  <Loader2 className=" animate-spin w-16 h-16 stroke-1" />
+                  <h1>Loading</h1>
+                </div>
               </LayoutContainer>
-            </SidebarProvider>
-          </SessionProvider>
+            }
+          >
+            <SessionProvider>
+              <SidebarProvider className="">
+                <SideNavBar />
+                <Toaster />
+                <LayoutContainer>
+                  <SidebarTrigger />
+                  {/* <Analytics /> */}
+                  <ThemeSwitcherOneClick seeName={false} />
+                  {children}
+                </LayoutContainer>
+              </SidebarProvider>
+            </SessionProvider>
+          </Suspense>
         </body>
       </ThemeProvider>
     </html>

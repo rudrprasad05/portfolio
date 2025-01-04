@@ -35,7 +35,7 @@ const Page = () => {
   const onSubmit = async (data: LoginFormValues) => {
     setState("LOADING");
     try {
-      login(data).then(() => setState("IDLE"));
+      await login(data).then(() => setState("IDLE"));
     } catch (err) {
       console.error("Unexpected error:", err);
       setState("IDLE");

@@ -1,7 +1,7 @@
+import { API_URL } from "./const";
 // middleware.ts
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
-import { API_URL } from "./const";
 import { toast } from "sonner";
 
 export async function middleware(req: NextRequest) {

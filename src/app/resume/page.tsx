@@ -1,7 +1,6 @@
-import React from "react";
-
 import FullWidthContainer from "@/components/global/FullWidthContainer";
 import PaddedContainer from "@/components/global/PaddedContainer";
+import React from "react";
 
 const page = () => {
   return (

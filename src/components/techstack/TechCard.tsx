@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { TechStackType, TTeckStack } from "@/types";
+import { TTeckStack } from "@/types";
 import React from "react";
 
 const TechCard = (props: TTeckStack) => {

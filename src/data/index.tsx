@@ -16,7 +16,6 @@ import {
   WordPressIconSvg,
 } from "@/components/svg";
 import { IProjectData, TechStackType, TJobData } from "@/types";
-import React, { SVGProps } from "react";
 
 export const ReactTech: TechStackType = {
   icon: <ReactIconSvg className="w-full" />,

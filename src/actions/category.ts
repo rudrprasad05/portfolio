@@ -1,5 +1,5 @@
 import { API_URL } from "@/const";
-import { Category, Post } from "@/types";
+import { Category } from "@/types";
 
 export const GetAllCategory = async () => {
   try {

@@ -1,5 +1,5 @@
 import { API_URL } from "@/const";
-import { Category, Content, Post } from "@/types";
+import { Content, Post } from "@/types";
 
 export const CreateManyContent = async (
   contents: Partial<Content>[],
