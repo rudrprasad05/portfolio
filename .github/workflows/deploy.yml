@@ -30,13 +30,3 @@ jobs:
       - name: Push Frontend Docker Image
         run: |
           docker push rudrprasad/resume:latest
-
-      # SSH into EC2 and update the container
-      - name: Deploy Frontend on EC2
-        run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.EC2_SSH_KEY }} ubuntu@44.204.76.51 'bash -s' << 'EOF'
-          docker pull rudrprasad/resume:latest
-          docker stop rudrprasad/resume || true
-          docker rm frontend || true
-          docker run -d --name frontend -p 3000:3000 rudrprasad/resume:latest
-          EOF
