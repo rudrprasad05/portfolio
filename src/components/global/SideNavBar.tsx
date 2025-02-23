@@ -64,26 +64,26 @@ const groups: GroupType[] = [
         icon: <Folder />,
         slug: "/projects",
       },
-      {
-        title: "Resume",
-        icon: <FileText />,
-        slug: "/resume",
-      },
-      {
-        title: "About",
-        icon: <Info />,
-        slug: "/about",
-      },
+      //   {
+      //     title: "Resume",
+      //     icon: <FileText />,
+      //     slug: "/resume",
+      //   },
+      //   {
+      //     title: "About",
+      //     icon: <Info />,
+      //     slug: "/about",
+      //   },
     ],
   },
   {
     groupName: "Resources",
     items: [
-      {
-        title: "Devlog",
-        icon: <Code />,
-        slug: "/devlog",
-      },
+      //   {
+      //     title: "Devlog",
+      //     icon: <Code />,
+      //     slug: "/devlog",
+      //   },
       {
         title: "Reads",
         icon: <Book />,
